@@ -434,6 +434,61 @@ iframe, .fluid-width-video-wrapper {
     margin: 1.75em 0;
 }
 
+/*
+  Ashish Custom style
+*/
+.main-header-content .user-image {
+  margin-bottom: 1.2em;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border: 3px solid #fff;
+  border-radius:100%;
+}
+
+.main-header-content .panel-cover__divider {
+	width: 50%;
+	margin: 20px auto;
+	border-top: 1px solid rgba(255, 255, 255, 0.14); 
+}
+
+.main-header-content .panel-cover__divider--secondary {
+	width: 15%; }
+
+.navigation__item {
+	display: inline-block;
+	line-height: 1em; }
+	.navigation__item a {
+    font-size: 1.2em;
+    margin: 0 10px;
+		border-color: #FFF;
+		color: #FFF;
+		opacity: .8; }
+		.navigation__item a .fa-twitter-square:hover {
+			color: #55acee;
+			border-color: #FFF;
+			opacity: 1; }
+		.navigation__item a .fa-github-square:hover {
+			color: #6cc644;
+			border-color: #FFF;
+			opacity: 1; }
+		.navigation__item a .fa-linkedin-square:hover {
+			color: #0077b5;
+			border-color: #FFF;
+			opacity: 1; }
+		.navigation__item a .fa-envelope:hover {
+			color: #febe12;
+			border-color: #FFF;
+			opacity: 1; }
+
+.navigation__item a .label {
+    display: none;
+}
+  
+/*
+  End Ashish custom style
+*/
+
 /* When a video is inside the fitvids wrapper, drop the
 margin on the iframe, cause it breaks stuff. */
 .fluid-width-video-wrapper iframe {
@@ -867,11 +922,11 @@ body.nav-opened .nav {
 
 /* The details of your blog. Defined in ghost/settings/ */
 .page-title {
-    margin: 10px 0 10px 0;
-    font-size: 5rem;
-    letter-spacing: -1px;
-    font-weight: 700;
-    font-family: "Open Sans", sans-serif;
+    margin: 0 0 10px 0;
+    font-size: 2.5em;
+    letter-spacing: 5px;
+    font-weight: 100;
+    font-family: "Merriweather", serif;
     color: #fff;
 }
 
@@ -1293,7 +1348,7 @@ body:not(.post-template) .post-title {
 }
 
 .author-title {
-    margin: 1.5rem 0 1rem;
+    margin: 10px 0 20px 0;
 }
 
 .author-bio {

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Finding The Way Home
+title: Ashish Pandey
 cover: 'assets/images/cover1.jpg'
 class: 'home-template'
 navigation: True
-logo: 'assets/images/ghost.png'
+logo: 'assets/images/logofh.png'
 current: home
 ---
 <!-- < default -->
@@ -21,8 +21,55 @@ current: home
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
+            <a href="{{ site.baseurl }}" title="link to home of {{ site.name }}">
+                <img src="{{ "assets/images/profile.jpg" | prepend: site.baseurl }}" class="user-image" alt="My Profile Photo">
+            </a>
             <h1 class="page-title">{{ site.name }}</h1>
+            <hr class="panel-cover__divider">
             <h2 class="page-description">{{ site.description }}</h2>
+            <hr class="panel-cover__divider panel-cover__divider--secondary">
+            
+            <div>
+              {% if site.twitter_username %}
+              <!-- Twitter -->
+              <li class="navigation__item">
+                <a href="http://twitter.com/{{ site.twitter_username }}" title="@{{ site.twitter_username }} on Twitter" target="_blank">
+                  <i class="fa fa-twitter-square fa-fw"></i>
+                  <span class="label">Twitter</span>
+                </a>
+              </li>
+              {% endif %} 
+              
+              {% if site.github_username %}
+              <!-- GitHub -->
+              <li class="navigation__item">
+                <a href="https://www.github.com/{{ site.github_username }}" title="{{ site.github_username }} on GitHub" target="_blank">
+                  <i class="fa fa-github-square fa-fw"></i>
+                  <span class="label">GitHub</span>
+                </a>
+              </li>
+              {% endif %}
+              
+              {% if site.linkedin_username %}
+              <!-- LinkedIn -->
+              <li class="navigation__item">
+                <a href="https://www.linkedin.com/in/{{ site.linkedin_username }}" title="{{ site.linkedin_username }} on LinkedIn" target="_blank">
+                  <i class="fa fa-linkedin-square fa-fw"></i>
+                  <span class="label">LinkedIn</span>
+                </a>
+              </li>
+              {% endif %}
+              
+              {% if site.email %}
+              <!-- Email -->
+              <li class="navigation__item">
+                <a href="mailto:{{ site.email }}" title="Email {{ site.email }}" target="_blank">
+                  <i class="fa fa-envelope fa-fw"></i>
+                  <span class="label">Email</span>
+                </a>
+              </li>
+              {% endif %}
+            </div>
         </div>
     </div>
     <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>

@@ -7,26 +7,31 @@ paginate: 5
 language: 'en-uk'
 
 # Website info
-name: 'Finding The Way Home'
-description: "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+name: 'Ashish Pandey'
+description: "Amused at technology"
 
 # Author's info
-author: 'Casper McFadden'
-# edit 'categories' in the front matter of every post to match this username
-nickname: casper
-bio: 'A paranormal expert and his daughter bunk in an abandoned house populated by 3 mischievous ghosts and one friendly one.'
-location: 'Maine, USA'
-url: 'http://biomadeira.github.io/jasper/'
-image: 'assets/images/casper.png'
+author: 'Ashish Pandey'
+email: ashishapy@gmail.com
+twitter_username: ashishapy
+github_username:  ashishapy
+linkedin_username:  ashishapy
 
-short_url: 'biomadeira.github.io/jasper/'
-google_analytics: UA-69281367-1
-disqus: username
+# edit 'categories' in the front matter of every post to match this username
+nickname: ashishapy
+bio: 'Technologist with polymath background. I started my career as CRM techno-functional consultant and now work on several emerging technologies. I enjoy working on Cloud, Docker & Kubernetes ecosystem, DevOps, Microservices, Javascript and mobile technologies. I offer a delicate balancing act between cutting edge technologies and delivering technical products to provide real business values.'
+location: 'Bengaluru, India'
+url: 'https://blog.ashishapy.com/'
+image: 'assets/images/profile.jpg'
+
+short_url: 'blog.ashishapy.com'
+google_analytics: UA-64427924-1
+disqus: ashishapy
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /jasper/
+baseurl: /
 
 # Permalinks
-permalink: /:title
+permalink: /:year/:month/:title/
 # permalink: /author/:username
 # permalink: /tag/:tag
 
@@ -56,13 +61,13 @@ exclude: [vendor]
 # or "master" otherwise
 safe: false
 lsi: false
-username: biomadeira
-repo: jasper
+username: ashishapy
+repo: blog
 branch: master
-relative_source: ../jasper/
-destination: ../jasper-pages/
-production_url:  https://biomadeira.github.io/jasper/
-source_url:      https://github.com/biomadeira/jasper/
+relative_source: ../blog/
+destination: ../blog-pages/
+production_url:  https://ashishapy.github.io/blog/
+source_url:      https://github.com/ashishapy/blog/
 
 exclude:
   - README.md
