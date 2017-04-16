@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>blog.ashishapy.com</title>
+   
+   <link>https://blog.ashishapy.com/</link>
+   <description>Amused at technology</description>
+   <language>en-uk</language>
+   <managingEditor> Ashish Pandey</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>MeteorJS: Quickest way to MVP your idea!</title>
+	  <link>//2016/02/meteorjs-quickest-way-to-mvp-your-idea/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2016-02-16T01:45:23+00:00</pubDate>
+	  <guid>//2016/02/meteorjs-quickest-way-to-mvp-your-idea/</guid>
+	  <description><![CDATA[
+	     <p>This is the era of entrepreneurs and startups. With the launch of #StartUpIndia #StandUpIndia policies by 
+PM Modi, now India is more friendly for start-ups. Not only Gov policies, even technology made so easy 
+to execute your ideas. Cheaper and easy access to technologies made it possible to dream big and execute 
+your idea.</p>
+
+<p>The success rate of start-ups is significantly low and I believe this is what makes this world so exciting. 
+We have started embracing failures, it is not like we should fail in implementing / executing our idea. 
+But we should not be afraid of failures in the path.</p>
+
+<p>How to get our idea turn into successful product / organisation? It all start with <strong><em>prototyping</em></strong> your idea 
+or creating a <strong><em>MVP (Minimum Viable Product)</em></strong>. Either your idea is related to software world or not but you 
+need a software system to showcase your prototype / MVP.</p>
+
+<p>Now you get me where I am heading to… <a href="https://www.meteor.com/" target="_blank">Meteor</a> is the framework for you to quickly develop your idea and 
+showcase to the world. To use Meteor all you need to know JavaScript , HTML &amp; CSS. These technologies 
+are the most used in the IT industry so it won’t be difficult either learn or get developers.</p>
+
+<p>Meteor is easy to learn and get started. Once you are familiar with Meteor ecosystem then it is just 
+matter of few weeks to get you MVP ready.</p>
+
+<p>Recently I have presented the journey of one’s idea till execution in one of the meet-ups. It’s great talk on developing and showcasing your idea.</p>
+
+<p><strong>Slides:</strong></p>
+
+<script async="" class="speakerdeck-embed" data-id="f6712c3742394af8812fa7c7b1e619da" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
+
+<p><strong>YouTube:</strong></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/z9G1u-ZfUl0" frameborder="0" allowfullscreen=""></iframe>
+
+<p>I was not well during presentation, this is my excuse to speak slowly (You may want to speed up the player) :) .</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

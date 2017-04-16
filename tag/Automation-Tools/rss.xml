@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>blog.ashishapy.com</title>
+   
+   <link>https://blog.ashishapy.com/</link>
+   <description>Amused at technology</description>
+   <language>en-uk</language>
+   <managingEditor> Ashish Pandey</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>DevOps: An Introduction with Automation Tools</title>
+	  <link>//2015/06/devops-an-introduction-with-automation-tools/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-06-20T15:03:00+00:00</pubDate>
+	  <guid>//2015/06/devops-an-introduction-with-automation-tools/</guid>
+	  <description><![CDATA[
+	     <p>I have been hearing about DevOps a lot and I thought to check it out, what is this new bird. I am tempted to try out at least one tool in each of its categories. If you like it, do leave your comment.</p>
+
+<p>==If you are interested only in list of DevOps Tools then jump to <a href="#automate">Step 2: Automate</a> of the post.==</p>
+
+<p>First question was in my mind. <strong>What is DevOps?</strong></p>
+
+<p>DevOps (Development and Operations) is software development method, an improvement upon Agile and Lean.</p>
+
+<p>Ok, we know the definition now. <strong>Why do we bother to learn another software development method?</strong></p>
+
+<p>It’s just a name ‘DevOps’. If you already have</p>
+
+<ul>
+  <li>Great culture (transparency, collaboration, shared responsibilities and  free flow of knowledge) with in team and across teams.</li>
+  <li>Most of the task are automated</li>
+  <li>Great Monitoring to give instant feedback</li>
+  <li>Instant delivery of production ready softwares / Fast IT.</li>
+  <li>Incremental value addition to business</li>
+</ul>
+
+<p>Then you are already on DevOps and please educate others to be awesome, as you are.</p>
+
+<p>Hummm… <strong>I am not on DevOps.</strong>
+Okay, let’s make transition to DevOps. 
+I must warn you!!! Once you make transition to DevOps then there is no turning back. It’s like full HD TV, once you experienced it, you never wanna go back to standard TV :) .</p>
+
+<p>Transition to DevOps is <strong>simple two step process</strong>.</p>
+
+<p>Step 1: Re-org with cultural changes
+Step 2: Automate</p>
+
+<p>Thank you!!!</p>
+
+<p>Still reading? DevOps must has got your attention ;) 
+Ok, ok, without wasting any more time, we jump to two step process.</p>
+
+<p>Step 1: <strong>Re-org with cultural changes</strong>
+DevOps is not about hiring new people but it is re-org of your existing team with cultural changes.</p>
+
+<p>You might have organisation structure as below, divided by their roles and skills.</p>
+
+<p><img src="//cdn.ashishapy.com/2015/Jun/1do-1434693207495.jpg" alt="Typical organisation structure" /></p>
+
+<ul>
+  <li>Re-org to have every stakeholder a common Goal, shared vision. Get a clear vision and have team around services. You maintain services over decades, not a project. Ultimately goal of project is also a service.</li>
+</ul>
+
+<p><img src="//cdn.ashishapy.com/2015/Jun/2do-1434695018246.jpg" alt="team around services" /></p>
+
+<p>Address wastes &amp; objections within team and encourage to have a shared vision.</p>
+
+<ul>
+  <li>
+    <p>Eliminate wastes like knowledge waste, waiting waste, waste in motion and inventory waste.</p>
+  </li>
+  <li>
+    <p>Address objections like security, compliance, offshore team, legacy and skills.</p>
+  </li>
+  <li>
+    <p>Bring transparency within the team and let free flow of knowledge at every level.</p>
+  </li>
+</ul>
+
+<p><strong>What about automation?</strong> do automation will help in building a DevOps team &amp; cultural changes?</p>
+
+<p>==<span id="automate">Step 2: <strong>Automate</strong></span>==</p>
+
+<p>Yes, tools are integral part of DevOps. Tools help to automate things and bring DevOps culture in the team.</p>
+
+<p><strong>Categories of DevOps tool</strong>
+<img src="//cdn.ashishapy.com/2015/Jun/3do1-1434742664868.jpg" alt="Categories of DevOps" /></p>
+
+<p>List of useful tools for each categories:</p>
+
+<p><strong>1. Collaboration:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://www.skype.com">Skype</a></li>
+  <li><a href="https://slack.com">Slack</a></li>
+  <li><a href="https://github.com">Github Wiki</a></li>
+  <li>Blogs</li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>To easily connect with across teams.</li>
+  <li>Helps in rapid discussion to make decision fast.</li>
+  <li>Pass knowledge across team.</li>
+  <li>Helps to avoid knowledge waste.</li>
+  <li>Acts as knowledge repository.</li>
+  <li>Quick collaboration.</li>
+</ul>
+
+<p><strong>2. Planning:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://trello.com">Trello</a></li>
+  <li><a href="http://visualstudio.com">Visual Studio Online</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Collective team planning.</li>
+  <li>Bring transparency.</li>
+  <li>Bring everybody online onboard.</li>
+  <li>Visibility to everybody, what others are working on. Who to contact when needed &amp; who are responsible for what.</li>
+  <li>Define priorities in real time.</li>
+</ul>
+
+<p><strong>3. Issue Tracking:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://www.zendesk.com">Zendesk</a></li>
+  <li><a href="https://www.atlassian.com/software/jira">Jira</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Know how I am doing to collect triage and response as collective team.</li>
+  <li>Not to do transportation waste as with multiple tracking system.</li>
+  <li>Eliminate transportation waste, knowledge waste as information continues to degrade as information travels through systems.</li>
+  <li>Have a shared view, everybody is looking at same place and solving problem (not passing around).</li>
+</ul>
+
+<p><strong>4. Monitoring:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://logstash.net">Logstash</a></li>
+  <li><a href="http://www.microsoft.com/sam/en/us/systemcenter.aspx">Microsoft System Center</a></li>
+  <li><a href="http://rashidkpc.github.io/Kibana">Kibana</a></li>
+  <li><a href="http://newrelic.com">New Relic</a></li>
+  <li><a href="https://www.nagios.org/">Nagios</a></li>
+  <li><a href="https://sensuapp.org/">Sensu</a></li>
+  <li><a href="http://www.zabbix.com/">Zabbix</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Health Check of systems.</li>
+  <li>System Alerts.</li>
+  <li>Helps in maintenance &amp; deployment.</li>
+  <li>Helps in designing systems and future improvements.</li>
+  <li>To know when is the right time to bring in right person to troubleshoot the problem.</li>
+  <li>Collecting, parsing and analysing system logs.</li>
+</ul>
+
+<p><strong>5. Configuration Management:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://www.getchef.com">Chef</a></li>
+  <li><a href="http://www.saltstack.com">SaltStack</a></li>
+  <li><a href="http://puppetlabs.com">Puppet</a></li>
+  <li><a href="http://www.ansible.com">Ansible</a></li>
+  <li><a href="http://technet.microsoft.com/en-us/library/dn249912.aspx">Powershell DSC</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Keep configuration stable and consistent, when moves from one server to another.</li>
+  <li>Infrastructure management as code.</li>
+  <li>Changes to one server applied to all server automatically.</li>
+</ul>
+
+<p><strong>6. Source Control:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://github.com">Github</a></li>
+  <li><a href="https://bitbucket.org/">Bitbucket</a></li>
+  <li><a href="https://subversion.apache.org/">Subversion</a></li>
+  <li><a href="https://www.atlassian.com/software/stash">Stash</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Closely guard your software assets.</li>
+  <li>Track changes with audit control.</li>
+  <li>Store configuration along with code. Infrastructure as code.</li>
+  <li>More control over changes in as infrastructure.</li>
+  <li>Easy to troubleshoot issue when something go wrong.</li>
+</ul>
+
+<p><strong>7. Development Environment:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://codenvy.com">Codenvy</a></li>
+  <li><a href="http://www.vagrantup.com">Vagrant</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Making sure all developers have access to same setup / configuration.</li>
+  <li>Eliminate differences between production environment and development environment.</li>
+  <li>Browser / cloud based IDE, see real time code change by others.</li>
+</ul>
+
+<p><strong>8. Continous Integration:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://www.jetbrains.com/teamcity">Teamcity</a></li>
+  <li><a href="http://jenkins-ci.org">Jenkins</a></li>
+  <li><a href="https://travis-ci.com">Travis CI</a></li>
+  <li><a href="https://www.atlassian.com/software/bamboo">Bamboo</a></li>
+  <li><a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Continuous and very frequent code merge in shared / main repository.</li>
+  <li>Changed code gets tested by automated build tools against all integrated systems.</li>
+  <li>Detect problem as early as possible.</li>
+</ul>
+
+<p><strong>9. Deployment:</strong></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="http://aws.amazon.com/cloudformation">Cloudformation</a></li>
+  <li><a href="http://www.packer.io">Packer</a></li>
+  <li><a href="http://www.docker.com">Docker</a></li>
+  <li><a href="http://octopusdeploy.com">Octopus</a></li>
+  <li><a href="http://www.go.cd">Go</a></li>
+  <li><a href="http://capistranorb.com/">Capistrano</a></li>
+</ul>
+
+<p>Benefits:</p>
+
+<ul>
+  <li>Making sure continuous deployment is reliable and less scary.</li>
+  <li>Have whole build pipeline and configuration goes to production as a single package.</li>
+  <li>Easily autoscale same setup many fold.</li>
+  <li>Encourages great cooperation between Developer and Operation.</li>
+  <li>You might never update an server but replace it with updated / new code &amp; configuration.</li>
+</ul>
+
+<p>Definitely some of tools listed above serve purpose of more than one category. So use your own analysis before choosing a suitable tool for you.</p>
+
+<p>Automation tools help to get code changes from Dev to Prod within few mins. This is the power of DevOps automation.</p>
+
+<p>DevOps is about continuous improvement, so does this post.</p>
+
+<p>Hope you like it, please do leave comments here or discuss over Twitter.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

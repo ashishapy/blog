@@ -1,28 +1,228 @@
----
-layout: null
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.name | xml_escape }} - Articles</title>
-    <description>{% if site.description %}{{ site.description | xml_escape }}{% endif %}</description>
+    <title>Ashish Pandey - Articles</title>
+    <description>Amused at technology</description>
     <link>
-    {{ site.url }}</link>
-    {% for post in site.posts %}
-      {% unless post.link %}
+    https://blog.ashishapy.com/</link>
+    
+      
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        {% if post.excerpt %}
-          <description>{{ post.excerpt | xml_escape }}</description>
-        {% else %}
-          <description>{{ post.content | xml_escape }}</description>
-        {% endif %}
-        <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
+        <title>Self-Healing Systems using Docker</title>
+        
+          <description>&lt;p&gt;Imagine world where IT / Software systems do not require manual intervention to manage itself. Systems are self-sufficient. In case of disaster, systems are able to recover itself &amp;amp; resume services. Systems are able to detect what is not working, then &lt;em&gt;self-heal / auto-heal / restore&lt;/em&gt; itself to &lt;strong&gt;designed state&lt;/strong&gt;.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 18 Sep 2016 06:00:00 +0000</pubDate>
         <link>
-        {{ site.url }}{{ post.url }}</link>
-        <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+        https://blog.ashishapy.com//2016/09/self-healing-system-using-docker/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/09/self-healing-system-using-docker/</guid>
       </item>
-      {% endunless %}
-    {% endfor %}
+      
+    
+      
+      <item>
+        <title>Git (Source Code Management) - Strategy &amp; Solution</title>
+        
+          <description>&lt;p&gt;It’s been long time, I haven’t posted anything on the blog. Though I have been engaged through meet ups with technical communities in Pune. It always excites me to explore new (which I never explored before) and go back to community and share my experience and knowledge.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 16 Sep 2016 10:00:00 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2016/09/git-source-code-management-system/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/09/git-source-code-management-system/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Docker Ecosystem for Microservices</title>
+        
+          <description>&lt;p&gt;In previous post &lt;a href=&quot;/2016/03/docker-with-devops/&quot;&gt;Docker with DevOps - One step towards Microservices&lt;/a&gt;, we talked about Microservices and how Docker with fully automated DevOps workflow helped building a microservice. The talk included hands-on Docker basics and building Automated workflow (CI / CD).&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 17 Apr 2016 10:00:23 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2016/04/docker-ecosystem-for-microservice-cluster/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/04/docker-ecosystem-for-microservice-cluster/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Docker with DevOps - One step towards Microservices</title>
+        
+          <description>&lt;p&gt;Microservices are slowly becoming the preferred way to build big, easy to maintain and highly scalable systems thanks to tools like &lt;strong&gt;Docker&lt;/strong&gt;, CoreOS, etcd, Consul, Fleet, Mesos, Rocket, and others. Due to the goals today’s competition sets in front of us (flexibility, speed, and so on), microservices are probably the best type of architecture we can apply.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 26 Mar 2016 10:00:23 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2016/03/docker-with-devops/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/03/docker-with-devops/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>2/2 Free and secure static website or blog</title>
+        
+          <description>&lt;p&gt;In the previous post, we hosted a static site using &lt;a href=&quot;http://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; on &lt;a href=&quot;https://github.com&quot;&gt;GitHub&lt;/a&gt;.
+Which can be browsed on &lt;font color=&quot;green&quot;&gt;username.github.io&lt;/font&gt;.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 20 Mar 2016 10:00:23 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2016/03/custom-domain-githubpage-cloudflare/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/03/custom-domain-githubpage-cloudflare/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>1/2 Free and secure static website or blog</title>
+        
+          <description>&lt;p&gt;If you are individual / small company and want to host your own website / blog. But you don’t want hassle to 
+maintain your hosting site and looking for some simple &amp;amp; easy way to start. Then Github pages is the one you much check.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 21 Feb 2016 10:00:23 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2016/02/github-pages-and-cloudflare-free-secure-site/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/02/github-pages-and-cloudflare-free-secure-site/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>MeteorJS: Quickest way to MVP your idea!</title>
+        
+          <description>&lt;p&gt;This is the era of entrepreneurs and startups. With the launch of #StartUpIndia #StandUpIndia policies by 
+PM Modi, now India is more friendly for start-ups. Not only Gov policies, even technology made so easy 
+to execute your ideas. Cheaper and easy access to technologies made it possible to dream big and execute 
+your idea.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Tue, 16 Feb 2016 01:45:23 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2016/02/meteorjs-quickest-way-to-mvp-your-idea/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2016/02/meteorjs-quickest-way-to-mvp-your-idea/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>DevOps: An Introduction with Automation Tools</title>
+        
+          <description>&lt;p&gt;I have been hearing about DevOps a lot and I thought to check it out, what is this new bird. I am tempted to try out at least one tool in each of its categories. If you like it, do leave your comment.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 20 Jun 2015 15:03:00 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/06/devops-an-introduction-with-automation-tools/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/06/devops-an-introduction-with-automation-tools/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>AWS https CloudFront with Free Custom SSL</title>
+        
+          <description>&lt;p&gt;I wanted to deliver images on my website through a secure CDN (in case of AWS, it is CloudFront) to improve performance of my website.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 13 Jun 2015 08:48:15 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/06/https-aws-cloudfront-with-free-custom-ssl/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/06/https-aws-cloudfront-with-free-custom-ssl/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Create AWS Https / SSL Load Balancer</title>
+        
+          <description>&lt;p&gt;I got class 1 SSL certificate free from &lt;a href=&quot;https://www.startssl.com/&quot;&gt;StartSSL&lt;/a&gt; for my domain. 
+If you are interested to know more about this, follow my posts here &lt;a href=&quot;http://bit.ly/1L6XePf&quot;&gt;Get SSL Certificate (Free) &amp;amp; Enable https on nginx&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 24 May 2015 03:31:00 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/05/create-aws-https-ssl-load-balancer/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/05/create-aws-https-ssl-load-balancer/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Part 2/2 - Configure SSL on nginx web server</title>
+        
+          <description>&lt;p&gt;nginx (pronounced engine-x) is a free, open-source, light-weight, high-performance, load balancer, HTTP cache, and a web server.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 17 May 2015 19:08:04 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/05/part-22-configure-nginx-web-server/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/05/part-22-configure-nginx-web-server/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Part 1/2 - Get SSL certificate (free)</title>
+        
+          <description>&lt;p&gt;I want a totally, 100% free certificate so I’m going to use &lt;a href=&quot;https://www.startssl.com/&quot;&gt;StartSSL&lt;/a&gt; class 1 certificate. Before you go ahead, please check StartSSL / StartCom reviews and their policies (recommended).&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Wed, 13 May 2015 08:05:53 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/05/part-12-get-ssl-certificate-free/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/05/part-12-get-ssl-certificate-free/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Signup for StartSSL</title>
+        
+          <description>&lt;p&gt;We need to signup before we start using services of startSSL like generating SSL certificate.
+Let’s signup for startSSL in 8 easy steps.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 09 May 2015 20:51:29 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/05/signup-for-startssl/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/05/signup-for-startssl/</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>Introduction: Get SSL Certificate (Free) &amp; Enable https on nginx</title>
+        
+          <description>&lt;p&gt;So, you got your domain up &amp;amp; working, let’s say, it is http://yourDomain.com, Great!!!
+But wait! isn’t https:// ? No problem, you must not be dealing with any private or sensitive data of your business and your customer.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 09 May 2015 09:58:01 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2015/05/get-ssl-certificate-free-enable-https-on-nginx/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2015/05/get-ssl-certificate-free-enable-https-on-nginx/</guid>
+      </item>
+      
+    
   </channel>
 </rss>

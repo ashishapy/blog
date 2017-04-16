@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>blog.ashishapy.com</title>
+   
+   <link>https://blog.ashishapy.com/</link>
+   <description>Amused at technology</description>
+   <language>en-uk</language>
+   <managingEditor> Ashish Pandey</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>Docker Ecosystem for Microservices</title>
+	  <link>//2016/04/docker-ecosystem-for-microservice-cluster/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2016-04-17T10:00:23+00:00</pubDate>
+	  <guid>//2016/04/docker-ecosystem-for-microservice-cluster/</guid>
+	  <description><![CDATA[
+	     <p>In previous post <a href="/2016/03/docker-with-devops/">Docker with DevOps - One step towards Microservices</a>, we talked about Microservices and how Docker with fully automated DevOps workflow helped building a microservice. The talk included hands-on Docker basics and building Automated workflow (CI / CD).</p>
+
+<p>In the quest to deploy <strong>often and fast</strong>, be <strong>fully automatic</strong>, accomplish <strong>zero-downtime</strong>, have the <strong>ability to rollback</strong>, provide constant <strong>reliability</strong> across environments, be able to <strong>scale effortlessly</strong>, and create <strong>self-healing systems</strong> able to recuperate from failures. We derive many strategies, architecture and tools.</p>
+
+<p>By adopting culture of Automation / DevOps, we can deliver product / software very often and fully automatic way. But having zero-downtime was challenge. <strong>Blue-Green deployment strategy</strong> is the way to deploy new version of micro-service without any down time. Blue-Green deployment strategy also gives you ability to test the new version against real production traffic and if something goes wrong, you have previous version available and you can always switch back to previous stable version of micro-service.</p>
+
+<p>With micro-services, you get hell lots of moving parts of application. Of-course Docker helps in creating standard package for micro-services, so that we can have standardise way to handle micro-services, irrespective of technology used to build micro-services.</p>
+
+<p>Let’s call collection of all moving parts (containers) of application a <strong>Cluster</strong> . Creating / managing cluster needs some tooling to make our task easy. Before we go further let’s see <strong>Self-Healing micro-services architecture</strong> as below.</p>
+
+<p><img src="/assets/images/self_healing_ms.jpg" alt="Self-Healing Architecture" /></p>
+
+<p>As part of hands-on / demo, I created a GitHub repo <a href="https://github.com/ashishapy/demo-microservices-v1">Demo-MicroServices</a>. It has steps to create a cluster using <strong>Consul</strong> as service discovery, <strong>Registrator</strong> and <strong>Docker Swarm</strong> as cluster orchestrator. The repo has few steps, how to test if cluster is working as <strong>single view</strong>.</p>
+
+<p>In the continuation of the same, We dig deeper in the recent meet-up event at Capita, Pune. Go thorugh slides, I hope you will find many intersting things to discover.</p>
+
+<p><strong>Slides:</strong></p>
+
+<iframe src="//slides.com/ashishapy/docker-microservices/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p>It goes in detail about Docker ecosystem for Microservices. If you have any question, shoot me either through my Twitter handle or email me. I will be more than happy to respond.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

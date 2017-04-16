@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Docker with DevOps - One step towards Microservices</title>
+    <meta name="description" content="Ashish Pandey - Amused at technology" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Ashish Pandey" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ashish Pandey" />
+    <meta property="og:description" content="Amused at technology" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ashish Pandey" />
+    <meta name="twitter:description" content="Amused at technology" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Ashish Pandey",
+    "url": "/",
+    "image": "/assets/images/cover1.jpg",
+    "description": "Amused at technology"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Ashish Pandey" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/ashishapy">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/DevOps-Automated-Workflow.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logofb.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Docker with DevOps - One step towards Microservices</h1>
+            <section class="post-meta">
+             <a href='/author/ashishapy'>Ashish Pandey</a> 
+            <time class="post-date" datetime="2016-03-26">26 Mar 2016</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Docker'>Docker</a>,
+                       
+                
+                    
+                       <a href='/tag/DevOps'>Devops</a>,
+                       
+                
+                    
+                       <a href='/tag/Microservices'>Microservices</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <br>
+        
+        <section class="post-content">
+            
+            <p>Microservices are slowly becoming the preferred way to build big, easy to maintain and highly scalable systems thanks to tools like <strong>Docker</strong>, CoreOS, etcd, Consul, Fleet, Mesos, Rocket, and others. Due to the goals today’s competition sets in front of us (flexibility, speed, and so on), microservices are probably the best type of architecture we can apply.</p>
+
+<p>It’s a quest to deploy <strong>often and fast</strong>, be <strong>fully automatic</strong>, accomplish <strong>zero-downtime</strong>, have the <strong>ability to rollback</strong>, provide constant <strong>reliability</strong> across environments, be able to <strong>scale effortlessly</strong>, and create <strong>self-healing systems</strong> able to recuperate from failures.</p>
+
+<p>Before containers became common, microservices were painful to deploy. On the other hand, monolithic applications are relatively simple to handle.</p>
+
+<p><strong><a href="https://www.docker.com/">Docker</a></strong> made it possible to work with containers without suffering in the process. They made containers accessible and easy to use to everyone.</p>
+
+<p>Docker allows you to package an application with all of its dependencies into a standardised unit for software development, code, runtime, system tools, system libraries – anything you can install on a server. By encapsulating and isolating everything in a container, this guarantees that the container will always run the same, regardless of the environment it is running in.</p>
+
+<p>One can have DevOps Continuous Integration (CI), Continuous Delivery / Deployment (CD) and leverage Docker ecosystem to deliver <strong>often and fast</strong>, be <strong>fully automatic</strong>, accomplish <strong>zero-downtime</strong>, have the <strong>ability to rollback</strong> software products.</p>
+
+<p>A reference of automated workflow below:</p>
+
+<p><img src="/assets/images/DevOps-Automated-Workflow.jpg" alt="DevOps-Automated-Workflow" /></p>
+
+<hr />
+<p>I had organised a meet up event for learning ‘Docker with DevOps - One step towards Microservices’ with hands-on. It was great success in terms of learning and having intellectual discussion around Docker, DevOps and Microservices.</p>
+
+<p>Slides and Youtube recording are below:</p>
+
+<p><strong>Slides:</strong></p>
+
+<iframe src="//slides.com/ashishapy/dockerwithdevops/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p><strong>Youtube:</strong></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/-XPwp2v7HMo" frameborder="0" allowfullscreen=""></iframe>
+
+<p>If you interested to explore about Microservices, check book “Building Microservices” by ‘Sam Newman’. Also check <a href="https://leanpub.com/the-devops-2-toolkit">the-devops-2-toolkit</a> for DevOps and tool kits.</p>
+
+<p>Hope this will help you to have intellectual discussion around Microservices architecture. You can always reach me on my Twitter account or email me.</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/author/ashishapy" style="background-image: url(/assets/images/profile.jpg)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/author/ashishapy">Ashish Pandey</a></h4>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Bengaluru, India</span> 
+                    <span class="author-link icon-link"><a href="https://blog.ashishapy.com/"> blog.ashishapy.com</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Docker with DevOps - One step towards Microservices&amp;url=https://blog.ashishapy.com/2016/03/docker-with-devops/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ashishapy.com/2016/03/docker-with-devops/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://blog.ashishapy.com/2016/03/docker-with-devops/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.url = 'https://blog.ashishapy.com//2016/03/docker-with-devops/'; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = '/2016/03/docker-with-devops/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//ashishapy.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/self_healing_ms.jpg)" href="/2016/04/docker-ecosystem-for-microservice-cluster/">
+            <section class="post">
+                <h2>Docker Ecosystem for Microservices</h2>
+                <p>In previous post [Docker with DevOps - One step towards Microservices]({% post_url 2016-03-26-docker-with-devops %}), we...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover8.jpg)" href="/2016/03/custom-domain-githubpage-cloudflare/">
+            <section class="post">
+                <h2>2/2 Free and secure static website or blog</h2>
+                <p>In the previous post, we hosted a static site using Jekyll on GitHub. Which can...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Ashish Pandey</a> &copy; 2017</section>
+          <section class="poweredby"><a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-64427924-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

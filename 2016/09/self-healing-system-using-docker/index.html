@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- [[! Document Settings ]] -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- [[! Page Meta ]] -->
+    <title>Self-Healing Systems using Docker</title>
+    <meta name="description" content="Ashish Pandey - Amused at technology" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- [[! Styles'n'Scripts ]] -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css"
+          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- [[! highlight.js ]] -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
+        <link rel="canonical" href="/" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="Ashish Pandey" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ashish Pandey" />
+    <meta property="og:description" content="Amused at technology" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/assets/images/cover1.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ashish Pandey" />
+    <meta name="twitter:description" content="Amused at technology" />
+    <meta name="twitter:url" content="/" />
+    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "Ashish Pandey",
+    "url": "/",
+    "image": "/assets/images/cover1.jpg",
+    "description": "Amused at technology"
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="Ashish Pandey" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/ashishapy">Author</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+    <div class="site-wrapper">
+
+        <!-- [[! Everything else gets inserted here ]] -->
+        <!-- < default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/self-tool.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/logofh.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post">
+
+        <header class="post-header">
+            <h1 class="post-title">Self-Healing Systems using Docker</h1>
+            <section class="post-meta">
+             <a href='/author/ashishapy'>Ashish Pandey</a> 
+            <time class="post-date" datetime="2016-09-18">18 Sep 2016</time>
+                <!-- [[tags prefix=" on "]] -->
+                 
+                on 
+                
+                    
+                       <a href='/tag/Docker'>Docker</a>,
+                       
+                
+                    
+                       <a href='/tag/Self-Healing'>Self-healing</a>,
+                       
+                
+                    
+                       <a href='/tag/Microservices'>Microservices</a>
+                       
+                
+                
+            </section>
+        </header>
+
+        <br>
+        
+        <section class="post-content">
+            
+            <p>Imagine world where IT / Software systems do not require manual intervention to manage itself. Systems are self-sufficient. In case of disaster, systems are able to recover itself &amp; resume services. Systems are able to detect what is not working, then <em>self-heal / auto-heal / restore</em> itself to <strong>designed state</strong>.</p>
+
+<p>If some part of system can’t be auto repaired then system should also be able to detect it, work as a <strong>circuit breaker</strong> to isolate defective part of the system. Also make sure that rest of the system don’t get impacted and operate as normal.</p>
+
+<p>Self-Healing Microservices Systems are a big step towards building such systems.</p>
+
+<p><em>There are three levels of self-healing systems.</em></p>
+
+<ol>
+  <li>
+    <p><strong>Application Level:</strong></p>
+
+    <p>We capture problem either through exception or through logs. It is upto developers of each service to design in such a way that it can heal itself or recover from failure. Implementation of DevOps practices or Continuous Deployment process would be great help in the direction.</p>
+  </li>
+  <li>
+    <p><strong>System Level:</strong></p>
+
+    <p>Systems are monitored through aspect of process failure and response time. If process fails, we need to restart the service or redeploy the service. If response time is not acceptable then we need to scale / descale the service.</p>
+  </li>
+  <li>
+    <p><strong>Hardware Level:</strong></p>
+
+    <p>Hard truth, we can’t self-heal hardware in case of hardware failure. We can redeploy the services to a healthy hardware / node. Or we keep monitoring the hardware and take preventive measure to scale hardware / infrastructure.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>Microservices architecture, Container technologies and modern cloud (public/private) infrastructure are making possible to create Self-Healing systems.</p>
+</blockquote>
+
+<p>Here is the slides &amp; YouTube video from my recent talk on <a href="http://www.meetup.com/WebApp-Pune/events/233785424/">Self-Healing Microservices using Docker</a> (1.12.x) with <a href="http://www.meetup.com/WebApp-Pune/">WebApp-Pune meetup</a>.</p>
+
+<p><strong>Slides:</strong></p>
+
+<iframe src="//slides.com/ashishapy/self-healing-systems/embed" width="576" height="420" scrolling="no" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+
+<p><strong>Youtube:</strong></p>
+
+<p>If you just want to see Self-Healing demo and don’t have enough patient to watch full meetup event video. then jump to 1hr 26mins time or follow this YouTube link <strong><a href="https://youtu.be/eV3Ltw1qjNo?t=1h26m">Self-healing Demo</a></strong>.</p>
+
+<p>The full video:</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/eV3Ltw1qjNo" frameborder="0" allowfullscreen=""></iframe>
+
+<p>It covers a lot of details including The 12 Factor Apps, Self-Healing, Docker, Microservices and Demo of Self-Healing Systems using Docker swarm mode.</p>
+
+<p>Let me know your feedback or any question you have. Use comment section below or Twitter <a href="https://twitter.com/ashishapy">@ashishapy</a>.</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+
+            
+            <figure class="author-image">
+                <a class="img" href="/author/ashishapy" style="background-image: url(/assets/images/profile.jpg)"><span class="hidden">'s Picture</span></a>
+            </figure>
+            
+
+            <section class="author">
+                <h4><a href="/author/ashishapy">Ashish Pandey</a></h4>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location"> Bengaluru, India</span> 
+                    <span class="author-link icon-link"><a href="https://blog.ashishapy.com/"> blog.ashishapy.com</a></span> 
+                </div>
+            </section>
+
+            <!-- /author  -->
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <a class="icon-twitter" href="http://twitter.com/share?text=Self-Healing Systems using Docker&amp;url=https://blog.ashishapy.com/2016/09/self-healing-system-using-docker/"
+                    onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <span class="hidden">Twitter</span>
+                </a>
+                <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.ashishapy.com/2016/09/self-healing-system-using-docker/"
+                    onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <span class="hidden">Facebook</span>
+                </a>
+                <a class="icon-google-plus" href="https://plus.google.com/share?url=https://blog.ashishapy.com/2016/09/self-healing-system-using-docker/"
+                   onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <span class="hidden">Google+</span>
+                </a>
+            </section>
+            
+            <!-- Add Disqus Comments -->
+            
+                <div id="disqus_thread"></div>
+<script>
+/**
+* RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+* LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+*/
+
+var disqus_config = function () {
+this.page.url = 'https://blog.ashishapy.com//2016/09/self-healing-system-using-docker/'; // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = '/2016/09/self-healing-system-using-docker/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+
+s.src = '//ashishapy.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            
+            
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/sourcecode.jpg)" href="/2016/09/git-source-code-management-system/">
+            <section class="post">
+                <h2>Git (Source Code Management) - Strategy & Solution</h2>
+                <p>It’s been long time, I haven’t posted anything on the blog. Though I have been...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">Ashish Pandey</a> &copy; 2017</section>
+          <section class="poweredby"><a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a></section>
+        </footer>
+    </div>
+    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- [[! The main JavaScript file for Casper ]] -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-64427924-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>   
+</body>
+</html>

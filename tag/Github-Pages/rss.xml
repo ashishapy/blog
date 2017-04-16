@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>blog.ashishapy.com</title>
+   
+   <link>https://blog.ashishapy.com/</link>
+   <description>Amused at technology</description>
+   <language>en-uk</language>
+   <managingEditor> Ashish Pandey</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>1/2 Free and secure static website or blog</title>
+	  <link>//2016/02/github-pages-and-cloudflare-free-secure-site/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2016-02-21T10:00:23+00:00</pubDate>
+	  <guid>//2016/02/github-pages-and-cloudflare-free-secure-site/</guid>
+	  <description><![CDATA[
+	     <p>If you are individual / small company and want to host your own website / blog. But you don’t want hassle to 
+maintain your hosting site and looking for some simple &amp; easy way to start. Then Github pages is the one you much check.</p>
+
+<p>GitHub Pages, hosted directly from your GitHub repository. Just edit, push, and your website / blog is live. GitHub Pages are powered by <a href="http://jekyllrb.com/">Jekyll</a>.
+<a href="http://octopress.org/">Octopress</a> is also another way to Jekyll based framework for same purpose.</p>
+
+<p><a href="https://www.cloudflare.com">Cloudflare</a> gives security to your website / blog including SSL certificates.</p>
+
+<p>Though I like <a href="https://github.com/TryGhost/Ghost">Ghost</a>. You should also check, if you are trying to start a blogging business.</p>
+
+<p><strong>Synopsis:</strong></p>
+
+<p><strong>Part 1:</strong></p>
+
+<ol>
+  <li>Setup GitHub Page on your GitHub repo</li>
+  <li>Setup Jekyll on your local</li>
+  <li>Setup a Jekyll theme</li>
+  <li>Push local changes to GitHub repo &amp; Test</li>
+</ol>
+
+<hr />
+
+<p>Wohoo! Let’s start. There are few simple steps to get your website / blog ready.</p>
+
+<ol>
+  <li>Signup on <a href="https://github.com/">GitHub</a></li>
+  <li>
+    <p><a href="https://github.com/new">Create a repository</a>: 
+Create a new repository named <em><code class="highlighter-rouge">username.github.io</code></em>, <font color="blue">where <strong>'username'</strong> is your username (or organisation name) on GitHub.</font></p>
+  </li>
+  <li>Install Jekyll on your local machine <code class="highlighter-rouge">gem install jekyll</code>.</li>
+  <li>Choose a Jekyll theme and download, unzip it on your local (I choose a blog theme 
+<a href="http://jekyllthemes.org/themes/jekyll-uno/">Jekyll Uno</a>)</li>
+  <li>
+    <p>Go to folder and follow instruction to install dependencies.</p>
+
+    <p><code>$ cd jekyll-uno/</code> <br />
+ <code>$ gem install bundler</code>  <br />
+ <code>$ bundle install</code> <br /></p>
+  </li>
+  <li>
+    <p>Open “_config.yml” file in any text editor and make changes for your own website. e.g. You should change below things to personalise it at-least</p>
+
+    <pre>
+ title: 'Your Blog title'
+ description: 'Blog description'
+ url: 'blog url'
+ baseurl: '/'
+
+ author:
+   name: 'Your name'
+   email: your email id
+   twitter_username: username
+   github_username:  username
+ </pre>
+  </li>
+  <li>
+    <p>Run local server <code class="highlighter-rouge">$ bundle exec jekyll serve</code>. Go to ‘http://localhost:4000/’ and 
+see your changes on browser.</p>
+  </li>
+  <li>
+    <p>Check sample post under ‘_post’ directory. You must use File naming format. 
+Check <a href="http://jekyllrb.com/docs/home/">Jekyll Doc</a> to build &amp; customise your blog / website.</p>
+  </li>
+  <li>
+    <p>Now it’s time to push your blog to github.</p>
+
+    <p><code>$ git init</code> <br />
+ <code>$ git add -A</code> <br />
+ <code>$ git commit -m "first commit"</code> <br />
+ <code>$ git remote add origin git@github.com:username/username.github.io.git</code> <br />
+ Use your github repo here. <br />
+ <code>$ git push -u origin master</code></p>
+  </li>
+  <li>Let’s test, go to ‘http://username.github.io’ on browser. Yeeeee! That’s our first free blog 
+serving over Github Pages.</li>
+</ol>
+
+<p>This is the point where you choose either you want your own custom domain name or ‘username.github.io’ url works for you.
+There are way to enable https:// on your ‘username.github.io’ page. Check Eric Mill post <a href="https://konklone.com/post/github-pages-now-sorta-supports-https-so-use-it">here</a>.</p>
+
+<p>In the <strong><a href="/2016/03/custom-domain-githubpage-cloudflare/">next post</a></strong> we will go through how to setup custom domain on github pages and DNS setting, security on Cloudflare.</p>
+
+<p><br /></p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

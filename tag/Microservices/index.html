@@ -61,7 +61,7 @@
 
 
 </head>
-<body class="home-template nav-closed">
+<body class="tag-template nav-closed">
 
     <div class="nav">
     <h3 class="nav-title">Menu</h3>
@@ -69,7 +69,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         <li class="nav-author " role="presentation"><a href="/author/ashishapy">Author</a></li>
     </ul>
@@ -80,12 +80,14 @@
     <div class="site-wrapper">
 
         <!-- [[! Everything else gets inserted here ]] -->
-        <!-- < default -->
+        <!-- < dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover1.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover_tag.jpg) ">
     <nav class="main-nav overlay clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/logofh.png" alt="Blog Logo" /></a>
         
@@ -94,58 +96,14 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <a href="/" title="link to home of Ashish Pandey">
-                <img src="/assets/images/profile.jpg" class="user-image" alt="My Profile Photo">
-            </a>
-            <h1 class="page-title">Ashish Pandey</h1>
-            <hr class="panel-cover__divider">
-            <h2 class="page-description">Amused at technology</h2>
-            <hr class="panel-cover__divider panel-cover__divider--secondary">
+            <h1 class="page-title">Microservices</h1>
+            <h2 class="page-description">
             
-            <div>
-              
-              <!-- Twitter -->
-              <li class="navigation__item">
-                <a href="http://twitter.com/ashishapy" title="@ashishapy on Twitter" target="_blank">
-                  <i class="fa fa-twitter-square fa-fw"></i>
-                  <span class="label">Twitter</span>
-                </a>
-              </li>
-               
-              
-              
-              <!-- GitHub -->
-              <li class="navigation__item">
-                <a href="https://www.github.com/ashishapy" title="ashishapy on GitHub" target="_blank">
-                  <i class="fa fa-github-square fa-fw"></i>
-                  <span class="label">GitHub</span>
-                </a>
-              </li>
-              
-              
-              
-              <!-- LinkedIn -->
-              <li class="navigation__item">
-                <a href="https://www.linkedin.com/in/ashishapy" title="ashishapy on LinkedIn" target="_blank">
-                  <i class="fa fa-linkedin-square fa-fw"></i>
-                  <span class="label">LinkedIn</span>
-                </a>
-              </li>
-              
-              
-              
-              <!-- Email -->
-              <li class="navigation__item">
-                <a href="mailto:ashishapy@gmail.com" title="Email ashishapy@gmail.com" target="_blank">
-                  <i class="fa fa-envelope fa-fw"></i>
-                  <span class="label">Email</span>
-                </a>
-              </li>
-              
-            </div>
+			    A 3-post collection
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -157,9 +115,7 @@
         
             <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 3 </span>
-     
-        <a class="older-posts" href="/page2/" title="Next Page">Older Posts &raquo;</a>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
         
@@ -196,34 +152,6 @@
                 
             
             <time class="post-date" datetime="2016-09-18">18 Sep 2016</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2016/09/git-source-code-management-system/">Git (Source Code Management) - Strategy & Solution</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>It’s been long time, I haven’t posted anything on the blog. Though I have been engaged through meet ups with technical communities in Pune. It always... <a class="read-more" href="/2016/09/git-source-code-management-system/">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/profile.jpg" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/author/ashishapy'>Ashish Pandey</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/Git'>Git</a>,
-                       
-                
-                    
-                       <a href='/tag/SCM'>Scm</a>
-                       
-                
-            
-            <time class="post-date" datetime="2016-09-16">16 Sep 2016</time>
         </footer>
     </article>
     
@@ -291,49 +219,18 @@
         </footer>
     </article>
     
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/2016/03/custom-domain-githubpage-cloudflare/">2/2 Free and secure static website or blog</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>In the previous post, we hosted a static site using Jekyll on GitHub. Which can be browsed on username.github.io. Previous: 1/2 Free and secure static website... <a class="read-more" href="/2016/03/custom-domain-githubpage-cloudflare/">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            <img class="author-thumb" src="/assets/images/profile.jpg" alt="Author image" nopin="nopin" />
-            <!-- author -->
-            <a href='/author/ashishapy'>Ashish Pandey</a>
-            <!-- [[tags prefix=" on "]] -->
-             
-                on 
-                
-                    
-                       <a href='/tag/Website'>Website</a>,
-                       
-                
-                    
-                       <a href='/tag/CloudFlare'>Cloudflare</a>
-                       
-                
-            
-            <time class="post-date" datetime="2016-03-20">20 Mar 2016</time>
-        </footer>
-    </article>
-    
 
     <!-- Previous/next page links - displayed on every page -->
     
         <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 3 </span>
-     
-        <a class="older-posts" href="/page2/" title="Next Page">Older Posts &raquo;</a>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
     
 
 
 </main>
-
 
         <footer class="site-footer clearfix">
           <section class="copyright"><a href="/">Ashish Pandey</a> &copy; 2017</section>

@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>blog.ashishapy.com</title>
+   
+   <link>https://blog.ashishapy.com/</link>
+   <description>Amused at technology</description>
+   <language>en-uk</language>
+   <managingEditor> Ashish Pandey</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>AWS https CloudFront with Free Custom SSL</title>
+	  <link>//2015/06/https-aws-cloudfront-with-free-custom-ssl/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-06-13T08:48:15+00:00</pubDate>
+	  <guid>//2015/06/https-aws-cloudfront-with-free-custom-ssl/</guid>
+	  <description><![CDATA[
+	     <p>I wanted to deliver images on my website through a secure CDN (in case of AWS, it is CloudFront) to improve performance of my website.</p>
+
+<hr />
+<p><strong>Synopsis:</strong> 
+It’s covered in 4 steps.</p>
+
+<ol>
+  <li>Get class 1 free SSL from StartSSL</li>
+  <li>Upload certificate to aws for CloudFront</li>
+  <li>Configure Secure CloudFront to deliver images stored on AWS S3 bucket.</li>
+  <li>Setup Route 53 to use cdn subdomain with CloudFront</li>
+</ol>
+
+<hr />
+<p>But since I have enabled HTTP Strict Transport Security (HSTS) for all my website subdomains.</p>
+
+<p>==add_header Strict-Transport-Security “max-age=31536000; includeSubdomains;”;==</p>
+
+<p>It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol.
+After enabling HTTPS my domain is not allowed to serve images over http.</p>
+
+<p><strong>Step 1</strong>: 
+Let’s get a free SSL first.
+I got SSL for my domain https://ashishapy.com and one sub domain https://www.ashishapy.com for free. Check my other blog <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">get-ssl-certificate-free</a> to know, how to get it. 
+Now I want another subdomain https://cdn.ashishapy.com to be served using SSL. Free SSL allows to add only one subdomain along with root domain.</p>
+
+<p>I had two options
+A. Go for costly and exhaustive process to get class 2 SSL to add more than one subdomain.
+B. Or Get another Class 1 SSL Free for subdomain cdn.ashishapy.com.</p>
+
+<p>Being an individual blogger, I wanted to go for cheapest option without compromising security. I choose option 2, get it using same process explained <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">get-ssl-certificate-free</a>. 
+I have three files Private Key (cdn_ssl_private.key), Certificate (cdn_ssl.crt) and intermediate CA certificate (sub.class1.server.ca.pem)</p>
+
+<p><strong>Step 2</strong>: 
+Upload these files to AWS. You are gonna need AWS command line tool. If you haven’t already installed it then follow <a href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS cli installtion guide</a>.
+you need to associate your Amazon Access key and ID by running 
+<code>aws configure</code></p>
+
+<p>Once AWS cli tool configured, upload the certificate to AWS using following command.</p>
+
+<p><code>aws iam upload-server-certificate --server-certificate-name cdnashishpy --certificate-body file://cdn-ssl.crt --private-key file://cdn_ssl_private.key --certificate-chain file://sub.class1.server.ca.pem --path /cloudfront/</code></p>
+
+<p>I named certificate name as ‘cdnashishapy’, please use your own name to recognise easily in future.
+The extra –-path /cloudfront/ to let Amazon know we will be using this on CloudFront otherwise certificate won’t show for CloudFront.</p>
+
+<p>Test it, if all is well by running command 
+<code>aws iam get-server-certificate --server-certificate-name cdnashishapy</code>
+It should return uploaded certificate information.</p>
+
+<p><strong>Step 3</strong>:
+Sign in to your AWS account and go to <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront home</a>.
+<img src="//cdn.ashishapy.com/2015/Jun/1cf-1434176197004.jpg" alt="CloudFront home" />
+Click on ‘Create Distribution’.</p>
+
+<p><img src="//cdn.ashishapy.com/2015/Jun/2cf-1434176975683.jpg" alt="Select Web" />
+In ‘Web’ section click on ‘Get Started’ button</p>
+
+<p>In the next screen fill ‘Origin Settings’ &amp; ‘Default Cache Behaviour Settings’ as below screen shot.</p>
+
+<p>Origin Settings:
+<img src="//cdn.ashishapy.com/2015/Jun/3cf-1434177785313.jpg" alt="Origin Settings" />
+I choose a S3 bucket as origin. This should be your source of content.</p>
+
+<p>Default Cache Behaviour Settings:
+<img src="//cdn.ashishapy.com/2015/Jun/4cf-1434178088818.jpg" alt="Default Cache Behaviour Settings" /></p>
+
+<p>Distribution Settings:
+Here comes the critical part of the setup.
+<img src="//cdn.ashishapy.com/2015/Jun/5cf-1434178922019.jpg" alt="Distribution Settings" /></p>
+
+<p>Price Class: Choose it based on your most users’ geolocation.
+Alternate Domain Names (CNAMEs): Give your cdn subdomain name.
+SSL Certificate: Select Custom SSL Certificate and choose certificate name from drop down option.</p>
+
+<p>==Custom SSL Client Support: I choose ‘Only Clients that Support Server Name Indication (SNI)’. This option limits the browsers you can serve. Check what browser supports SNI.
+Mostly, it’s not supported in IE at all on Windows XP and earlier and Android 2.2 default browser. Still recommended to do your own analysis.==
+You can choose ‘All Clients’ but there are charges for that.</p>
+
+<p>Click on ‘Create Distribution’ button to create Secure CloudFront Distribution.
+<img src="//cdn.ashishapy.com/2015/Jun/6CF-1434181909661.jpg" alt="CloudFront Distribution" />
+This will take 15-20 mins to get status as ‘Enabled’.
+Copy ‘Domain Name’ value, you will need it to set up DNS in next step.</p>
+
+<p>You are just one step away from setting up you secure CDN.</p>
+
+<p><strong>Step 4</strong>:
+Go to your <a href="https://console.aws.amazon.com/route53/home#hosted-zones:">AWS Route53 Hosted Zones</a>.
+Create a Record Set.
+<img src="//cdn.ashishapy.com/2015/Jun/6cfr53-1434183046874.jpg" alt="Create a Record Set" />
+Paste CloudFront DomainName copied from Step 3 in Value.
+Save the record set and wait for couple of mins.</p>
+
+<p>Congratulations! You have successfully created a secure CDN.</p>
+
+<p>Please leave your comments here or discuss on Twitter.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Create AWS Https / SSL Load Balancer</title>
+	  <link>//2015/05/create-aws-https-ssl-load-balancer/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-05-24T03:31:00+00:00</pubDate>
+	  <guid>//2015/05/create-aws-https-ssl-load-balancer/</guid>
+	  <description><![CDATA[
+	     <p>I got class 1 SSL certificate free from <a href="https://www.startssl.com/">StartSSL</a> for my domain. 
+If you are interested to know more about this, follow my posts here <a href="http://bit.ly/1L6XePf">Get SSL Certificate (Free) &amp; Enable https on nginx</a></p>
+
+<p>I have hosted my domain on AWS EC2 instance and I want to build it around scalable &amp; reliable architecture. Using load balancer with auto scaling group is the way to go.</p>
+
+<p>I took below steps to achieve this.
+A. Create HTTPS / SSL Load Balancer (Talk of the post)
+B. Create Auto scaling group using above load balancer
+C. Configure Route 53 to use load balancer instead of Elastic IP.</p>
+
+<p>Let’s build AWS HTTPS / SSL EC2 load balancer.</p>
+
+<p><strong>Synopsis:</strong>
+Topics covered are, roughly.
+A. Define Load Balancer Protocol
+B. Assign Security Group
+C. Assign SSL Certificate
+D. Add EC2 Instance</p>
+
+<p>You should have aws account, basic understanding of aws and one or more running EC2 instances before creating load balancer.</p>
+
+<p><strong>Step 1:</strong>
+Login with your aws credentials to go to <a href="https://ap-southeast-1.console.aws.amazon.com/ec2/v2/home">aws ec2 management console</a>.
+Check the region you are in and it is as expected.
+Click on ‘Load Balancers’ under ‘Network &amp; Security’ section.
+<img src="//cdn.ashishapy.com/2015/May/1elb-1432444010267.jpg" alt="'Load Balancers' under 'Network &amp; Security'" />
+Click ‘Create Load Balancer’ on right side of screen.
+<img src="//cdn.ashishapy.com/2015/May/2elb-1432444285176.jpg" alt="Click 'Create Load Balancer'" /></p>
+
+<p><strong>Step 2:</strong>
+Define basic configuration of load balancer.
+Add https listener configuration, https protocol for both load balancer &amp; instance.
+<img src="//cdn.ashishapy.com/2015/May/3elb-1432444641729.jpg" alt="basic configuration of load balancer" />
+Click on ‘Next: Assign Security Group’</p>
+
+<p><strong>Step 3:</strong>
+Add security group. Either choose existing security group or create a new one. Allow all http &amp; https traffic to your load balancer.
+<img src="//cdn.ashishapy.com/2015/May/4elb-1432446047203.jpg" alt="Add security group" />
+Click on ‘Next: Configure Security Settings’.</p>
+
+<p><strong>Step 4:</strong>
+Here it gets bit tricky. Provide your SSL certificate details.
+<img src="//cdn.ashishapy.com/2015/May/5elb-1432446553171.jpg" alt="SSL certificate details" />
+==I had class 1 private key &amp; SSL certificate from StartSSL which was pem encoded. In case you want to know, how to get these, please check my post here <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">Part 1/2 - Get SSL certificate (free)</a>==</p>
+
+<p><strong>Private Key:</strong> 
+Copy &amp; paste content of private key (ssl.key) in this box.
+<strong>Public Key Certificate:</strong> 
+Copy &amp; paste content of your domain certificate (ssl.crt) here.
+<strong>Certificate Chain:</strong>
+Copy and paste content of your certificate of intermediate CA (sub.class1.server.ca.pem). Do not use certificate of Root CA. It won’t work here.</p>
+
+<p>Remove any extra space at the end of key / certificate.</p>
+
+<p><strong>Step 5:</strong>
+Complete rest of the steps as per instruction on UI.</p>
+
+<p><em>Configure Health Check:</em> 
+ Keep default values there or you can choose to make changes as per own preferences. Click on ‘Next: Add EC2 Instances’.</p>
+
+<p><em>Add EC2 Instances:</em>
+Select EC2 instances, you wanna add to the load balancer. Click on ‘Next: Add Tag’</p>
+
+<p><em>Add Tags:</em>
+Create tag here or leave it blank as I did. Click ‘Review &amp; Create’</p>
+
+<p><em>Review:</em>
+Review the details you entered before in this screen. If all are good then click on ‘Create’ button.</p>
+
+<p>The next screen will show you the status of load balancer. If all went well then it will create load balancer. In case you get any error related to private key or certificate then you have go through whole process again to create load balancer. This time carefully enter private key &amp; certificate.</p>
+
+<p>Well Done! You got a load balancer for your EC2 instances which is https enabled.</p>
+
+<p>Please leave comments / reviews or share on twitter.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Part 2/2 - Configure SSL on nginx web server</title>
+	  <link>//2015/05/part-22-configure-nginx-web-server/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-05-17T19:08:04+00:00</pubDate>
+	  <guid>//2015/05/part-22-configure-nginx-web-server/</guid>
+	  <description><![CDATA[
+	     <p>nginx (pronounced engine-x) is a free, open-source, light-weight, high-performance, load balancer, HTTP cache, and a web server.</p>
+
+<p>The StartSSL certificate is compatible with nginx. Configure ngnix to use it in this last part of the series.</p>
+
+<hr />
+<p>Previous:</p>
+
+<ul>
+  <li><a href="/2015/05/get-ssl-certificate-free-enable-https-on-nginx/">Introduction: Get SSL Certificate (Free) &amp; Enable https on nginx</a></li>
+  <li><a href="/2015/05/signup-for-startssl/">Signup for StartSSL</a></li>
+  <li><a href="/2015/05/part-12-get-ssl-certificate-free/">Part 1/2 - Get SSL certificate (free)</a></li>
+</ul>
+
+<hr />
+<p>We need to modify nginx.conf file, in my case it is located at /etc/ngnix folder.</p>
+
+<p><strong>Synopsis:</strong> 
+Topics covered are, roughly. 
+A. Place SSL certificate &amp; private key file on server
+B. Configure nginx for SSL
+C. Include some important security stuff on nginx
+D. Check grade on <a href="https://www.ssllabs.com/">SSLlabs</a></p>
+
+<p>we already have done most time consuming task for SSL. Now it’s time to feel good. Let’s finish the job.</p>
+
+<ol>
+  <li>Go to your nginx folder &amp; create a directory name ‘ssl’. This is the directory we will use to keep SSL certificate &amp; private key
+<code>[nginx]$mkdir ssl</code>
+Place both files (ssl-unified.crt &amp; ssl.key) in the folder. There are several ways to do this.
+I created empty files with same name in ‘ssl’ folder on server.</li>
+</ol>
+
+<p><code>[nginx]$cd ssl
+ [ssl]$sudo nano ssl-unified.crt
+ </code>
+ Copy and paste the content of local ssl-unified.crt file. Save it <code>ctrl+o</code> then exit <code>ctrl+x</code>.</p>
+
+<p><code>[ssl]$sudo nano ssl.key
+ </code>
+ Copy and paste the content of local ssl.key file. Save it <code>ctrl+o</code> then exit <code>ctrl+x</code>.</p>
+
+<p>Verify if both files are there. <code>[ssl]$ls -l</code>.</p>
+
+<p>As pointed in previous blog, Protect your key from prying eyes. Run
+<code>chmod 600 ssl.key</code> command.</p>
+
+<ol>
+  <li>
+    <p>Finally we’re able to configure nginx. Here’s the config I’m using (don’t forget to reload/restart nginx after a config change)
+ <code>
+ http {
+   ...
+   server\_tokens off;
+   add\_header X-Frame-Options SAMEORIGIN;
+   add\_header X-XSS-Protection "1; mode=block";
+#
+   server {
+     listen 80;
+     server\_name  .yourDomain.com;
+     return 301 https://$host$request\_uri;
+#
+     location / {
+             ...
+     }
+     ...
+   }
+   # HTTPS server
+   server {
+     listen 443 ssl default deferred;
+     server\_name .yourDomain.com;
+#
+     ssl on;
+     ssl\_certificate /etc/nginx/ssl/ssl-unified.crt;
+     ssl\_certificate\_key /etc/nginx/ssl/ssl.key;
+#
+     ssl\_session_cache shared:SSL:50m;
+     ssl\_session\_timeout 5m;
+#
+     ssl\_protocols TLSv1 TLSv1.1 TLSv1.2;
+     ssl\_ciphers HIGH:!aNULL:!MD5;
+     ssl\_prefer\_server\_ciphers on;
+#
+     add\_header Strict-Transport-Security "max-age=31536000; includeSubdomains;";
+#
+     location / {
+             ...
+     }
+   }
+ }
+</code>
+Save the nginx.conf.
+If you are interested to see some more security parameters and it’s explanation, there is nice gist https://gist.github.com/plentz/6737338. It’s worth to check it out.</p>
+  </li>
+  <li>
+    <p>Restart nginx to get nginx.conf changes.
+<code>$sudo service nginx restart</code>
+ If above command doesn’t work for you then you might want to refer this  http://nginx.org/en/docs/beginners_guide.html#control</p>
+  </li>
+</ol>
+
+<p>Open browser and enter http://yourDomain.com it should go to https://yourDomain.com automatically with green padlock.</p>
+
+<p><img src="//cdn.ashishapy.com/2015/May/15944989872_b958dc5552_m-1431886959872.jpg" alt="https" /></p>
+
+<p>Congratulations!!! You have successfully installed SSL and enabled your domain for https.</p>
+
+<ol>
+  <li>It’s time to go through litmus test, not really. Go to SSLLabs website https://www.ssllabs.com/ssltest/ for ssltest.
+Enter your domain name &amp; hit enter. It takes couple of mins to return with test result.
+Bingo! You must have got A grade, as I got.
+<img src="//cdn.ashishapy.com/2015/May/SSLLab_Summary-1431887799187.jpg" alt="SSLLab test summary" />
+Smile :) This is very very good rating.
+I am sure, A+ rating can be achieved with few more config on nginx.</li>
+</ol>
+
+<p>Seriously, if you made it through the entire guide, it’s very impressive. Enjoy your SSL cert and let me know your experience / remarks through twitter link or email me at ashish@ashishapy.com.</p>
+
+<p>Happy Learning!</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Part 1/2 - Get SSL certificate (free)</title>
+	  <link>//2015/05/part-12-get-ssl-certificate-free/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-05-13T08:05:53+00:00</pubDate>
+	  <guid>//2015/05/part-12-get-ssl-certificate-free/</guid>
+	  <description><![CDATA[
+	     <p>I want a totally, 100% free certificate so I’m going to use <a href="https://www.startssl.com/">StartSSL</a> class 1 certificate. Before you go ahead, please check StartSSL / StartCom reviews and their policies (recommended).</p>
+
+<p><strong>Limitations of StartSSL Free:</strong>
+While certificates are free for certain uses, there are limitations imposed unless an upgrade is purchased.</p>
+
+<ul>
+  <li>One-year certificate validity (new certificate can be issued for free at any time).</li>
+  <li>One domain plus one host name per certificate (e.g. www.yourDomain.com and yourDomain.com, or www.service.yourDomain.com and yourDomain.com).</li>
+  <li>No commercial use</li>
+  <li>Certificate revocation requires a fee</li>
+</ul>
+
+<hr />
+<p><strong>Previous</strong>:</p>
+
+<ul>
+  <li><a href="/2015/05/get-ssl-certificate-free-enable-https-on-nginx/">Introduction: Get SSL Certificate (Free) &amp; Enable https on nginx</a></li>
+  <li><a href="/2015/05/signup-for-startssl/">Signup for StartSSL</a></li>
+</ul>
+
+<p><strong>Next</strong>:</p>
+
+<p><a href="/2015/05/part-22-configure-nginx-web-server/">Part 2/2 - Configure SSL on nginx web server</a></p>
+
+<hr />
+<p><strong>Synopsis:</strong> 
+Topics covered are, roughly.
+A. Signup for StartSSL
+B. Get domain validated
+C. Private Key &amp; Certificate Signing Request (CSR)
+D. Prepare a unified certificate &amp; protect private key</p>
+
+<p>One needs to signup StartSSL &amp; if you haven’t done so for, here is a blog to signup for startSSL.
+<a href="/2015/05/signup-for-startssl/">Signup for StartSSL</a> . Signup then come back to this post again to continue.</p>
+
+<p>Once you signup &amp; certificate is installed on your browser, StartSSL will be able to authenticate you.</p>
+
+<p><strong>Validations Wizard:</strong></p>
+
+<ol>
+  <li>
+    <p>You should be able see these tabs on screen after signup.
+<img src="//cdn.ashishapy.com/2015/May/2AuthSSL-1431367260004.jpg" alt="Validation Wizard" />
+In case you don’t see above tabs then click on ‘Control Panel’ on right corner then on ‘Authenticate’.
+<img src="//cdn.ashishapy.com/2015/May/1AuthSSL-1431367398701.jpg" alt="Control Panel" />
+Click on ‘Validations Wizard’. We are going validate our domain so select ‘Domain Name Validation’ from drop down.
+<img src="//cdn.ashishapy.com/2015/May/3AuthSSL-1431369562298.jpg" alt="Validation Wizard" /></p>
+  </li>
+  <li>
+    <p>Enter your domain name 
+<img src="//cdn.ashishapy.com/2015/May/4AuthSSL-1431411787617.jpg" alt="Enter your domain name" /></p>
+  </li>
+  <li>
+    <p>Choose email address you have access to 
+<img src="//cdn.ashishapy.com/2015/May/5AuthSSL-1431413486102.jpg" alt="Choose email address" /></p>
+  </li>
+</ol>
+
+<p>This gets bit tricky. If You have chosen to hide your email id by proxy (as I did) while registering the domain then you will see last option as proxy mail id, else you should see your email id. Select last option and you will get mail forwarded by proxy mail id to your email id.</p>
+
+<ol>
+  <li>Domain Verification code
+<img src="//cdn.ashishapy.com/2015/May/6AuthSSL-1431529399603.jpg" alt="Domain Verification code" /></li>
+</ol>
+
+<p>You should receive an email with verification code as below.</p>
+
+<p><img src="//cdn.ashishapy.com/2015/May/6AuthSSLmail-1431415290094.jpg" alt="email Verification code" /></p>
+
+<p>Copy verification code from email and paste it in StartSSL verification code input box. Click on ‘Continue’ button.</p>
+
+<ol>
+  <li>Validation Success!
+<img src="//cdn.ashishapy.com/2015/May/7AuthSSL-1431504728128.jpg" alt="validation success" /></li>
+</ol>
+
+<p>Wow! we have successfully validated our domain. Let’s get private key and certificate for the domain.</p>
+
+<p><strong>Certificates Wizard:</strong></p>
+
+<ol>
+  <li>
+    <p>Click on ‘Certificates Wizard’
+<img src="//cdn.ashishapy.com/2015/May/1SSLCert-1431500670158.jpg" alt="Certificate Wizard" />
+Then select ‘Web Server SSL/TLS Certificate’ from drop down in ‘Certificate Target’ field. Click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Generate Private Key
+<img src="//cdn.ashishapy.com/2015/May/2SSLCert-1431500894187.jpg" alt="Generate Private Key" />
+Enter key password and note it down somewhere safe. You are gonna need it later. Keep key size 2048 for better security and performance. Click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Save Private Key &amp; Decrypt the key as per instruction.
+<img src="//cdn.ashishapy.com/2015/May/3SSLCert-1431504329620.jpg" alt="Save Private Key" />
+You got private key for your domain. Keep it safe place where only you can access it. Click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Select your validated domain from drop down option.
+<img src="//cdn.ashishapy.com/2015/May/4SSLCert-1431501233378.jpg" alt="Add domain" />
+Click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Add one subdomain 
+<img src="//cdn.ashishapy.com/2015/May/5SSLCert-1431533738187.jpg" alt="Add subdomain" />
+Choose subdomain name you want to add, wisely. You will be able to access your bare domain and one subdomain only through the certificate. I used ‘www’ subdomain, so that user should be able to use my website with or without ‘www’. But you are free to choose any subdomain of your choice.
+Click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Ready for certificate
+<img src="//cdn.ashishapy.com/2015/May/6SSLCert-1431501735690.jpg" alt="Ready for certificate" />
+Click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Wait for email confirmation
+<img src="//cdn.ashishapy.com/2015/May/7SSLCert-1431501858450.jpg" alt="Wait for email" /></p>
+  </li>
+</ol>
+
+<p>I got email within 15 mins.
+<img src="//cdn.ashishapy.com/2015/May/7SSLCertmail-1431502145843.jpg" alt="Email confirming the certificate" />
+Email confirms that Certificate has been issued for your bare domain &amp; one subdomain. Let’s go and grab it.</p>
+
+<p><strong>Tool Box:</strong></p>
+
+<ol>
+  <li>
+    <p>Click on ‘Tool Box’ then ‘Retrieve Certificate’
+<img src="//cdn.ashishapy.com/2015/May/1SSLTool-1431502783011.jpg" alt="Retrieve Certificate" /></p>
+  </li>
+  <li>
+    <p>Select Certificate
+<img src="//cdn.ashishapy.com/2015/May/2SSLTool-1431503013396.jpg" alt="Select Certificate" />
+Certificate is available to retrieve named on subdomain. Select &amp; click on ‘Continue’ button.</p>
+  </li>
+  <li>
+    <p>Copy Certificate and save it with name ssl.crt
+<img src="//cdn.ashishapy.com/2015/May/3SSLTool-1431503144980.jpg" alt="Copy Certificate" /></p>
+  </li>
+  <li>
+    <p>Get StartCom CA Certificates
+<img src="//cdn.ashishapy.com/2015/May/4SSLTool-1431503287930.jpg" alt="StartCom CA Certificates" />
+Get root and intermediate certificates. You need both certificates along with your subdomain certificate, to create a unified certificate.
+Alternatively use below commands to get root and intermediate certificates.
+<code>wget http://www.startssl.com/certs/ca.pem
+wget http://www.startssl.com/certs/sub.class1.server.ca.pem</code></p>
+  </li>
+  <li>
+    <p>Create a unified certificate from your certificate and the CA certificates
+<code>cat ssl.crt sub.class1.server.ca.pem ca.pem &gt; ssl-unified.crt</code>
+ssl-unified.crt will be certificate for your domain &amp; a subdomain.</p>
+  </li>
+  <li>
+    <p>Protect your key from prying eyes
+<code>chmod 600 ssl.key</code></p>
+  </li>
+</ol>
+
+<p>We have ssl.key (Private Key) &amp; ssl-unified.crt (Certificate). Let’s configure web server (nginx) to use these two and configure for https along with some other security stuff in 2nd and last part of the series.
+<a href="/2015/05/part-22-configure-nginx-web-server/">Part 2/2 - Configure SSL on nginx web server</a></p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Signup for StartSSL</title>
+	  <link>//2015/05/signup-for-startssl/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-05-09T20:51:29+00:00</pubDate>
+	  <guid>//2015/05/signup-for-startssl/</guid>
+	  <description><![CDATA[
+	     <p>We need to signup before we start using services of startSSL like generating SSL certificate.
+Let’s signup for startSSL in 8 easy steps.</p>
+
+<ol>
+  <li>
+    <p>Signup for <a href="https://www.startssl.com">startssl</a>.
+<img src="//cdn.ashishapy.com/2015/May/SSL_Signup-1431642461318.jpg" alt="Signup for startssl" />
+Click on top left corner of the page for sign up.</p>
+  </li>
+  <li>
+    <p>Enter you personal details.
+<img src="//cdn.ashishapy.com/2015/May/2_SSL_PersonalDetails-1431192673990.jpg" alt="Enter you personal details" /> Click on continue button.</p>
+  </li>
+  <li>
+    <p>StartCom will send an email on provided email with authentication code.
+<img src="//cdn.ashishapy.com/2015/May/3_SSLEmailVerify-1431193580485.jpg" alt="authentication code email" /> Copy the authentication code from the email.</p>
+  </li>
+  <li>
+    <p>Paste the authentication code you copied from email in previous step.
+<img src="//cdn.ashishapy.com/2015/May/3_SSL_verify-1431196264773.jpg" alt="paste your code" /> Click on continue button.</p>
+  </li>
+  <li>
+    <p>Generate Private Key
+<img src="//cdn.ashishapy.com/2015/May/4_SSL_PvtKey-1431196763899.jpg" alt="Generate Private Key" /> Click on continue button. It will generate a private key for you.</p>
+  </li>
+  <li>
+    <p>Install certificate
+<img src="//cdn.ashishapy.com/2015/May/5_SSL_Install-1431199588270.jpg" alt="Install Certificate" /> It will generate a certificate then install on your current browser.
+You will also get email with instructions reg. your certificate &amp; private key.
+<img src="//cdn.ashishapy.com/2015/May/4_SSLPvtemail-1431198504039.jpg" alt="email with private key instructions" /> You must take backup of your certificate &amp; private key as per instructions on https://www.startssl.com/?app=25#4 .</p>
+  </li>
+  <li>
+    <p>Congratulations!
+<img src="//cdn.ashishapy.com/2015/May/6_SSL_Finish-1431200025036.jpg" alt="SSL signup Finish" /> Click on Finish button.</p>
+  </li>
+  <li>
+    <p>You are validated for class 1
+<img src="//cdn.ashishapy.com/2015/May/7_SSL-1431203073438.jpg" alt="class 1 validation" /> Now you have access to Tool Box, Certification Wizard &amp; Validation Wizard.</p>
+  </li>
+</ol>
+
+<p>Signup process for startSSL is complete.</p>
+
+<p>Use <strong>Validation Wizard</strong> to validate like your domain.
+<strong>Certification Wizard</strong> to generate private key, generate CSR &amp; apply for certificate. 
+<strong>Tool Box</strong> to get your certificate.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Introduction: Get SSL Certificate (Free) & Enable https on nginx</title>
+	  <link>//2015/05/get-ssl-certificate-free-enable-https-on-nginx/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-05-09T09:58:01+00:00</pubDate>
+	  <guid>//2015/05/get-ssl-certificate-free-enable-https-on-nginx/</guid>
+	  <description><![CDATA[
+	     <p>So, you got your domain up &amp; working, let’s say, it is http://yourDomain.com, Great!!!
+But wait! isn’t https:// ? No problem, you must not be dealing with any private or sensitive data of your business and your customer.</p>
+
+<p>What!!! You are!!! 
+Not cool, HTTPS is secure, but HTTP is always vulnerable to eavesdropping attacks where hackers access sensitive information and website accounts. So let’s do HTTPS.</p>
+
+<p>Few days ago, I had setup my own domain &amp; I want to share how I did it.</p>
+
+<ol>
+  <li>Register my domain name on godaddy</li>
+  <li>Use AWS for Route 53, S3, Security Group, Elastic IP &amp; of course EC2 instance. I am using <a href="http://aws.amazon.com/free/">AWS Free Tier</a>.</li>
+  <li>Install all necessary softwares on EC2 instance. I installed nginx web server on EC2 instance &amp; configured as required.</li>
+  <li>Using Route 53 to configure the DNS records to point our domain at our site.</li>
+  <li>Open browser &amp; enter http://yourDomain.com. Bingo! everything works as expected. But it is not secure, https:// enabled.</li>
+</ol>
+
+<p>Next is to make it secure using SSL certificate &amp; enabling https:// for your domain, this is what the blog is all about.</p>
+
+<p>The next three blogs, are going to be …</p>
+
+<ul>
+  <li>
+    <p><strong><a href="/2015/05/signup-for-startssl/">Signup for StartSSL</a>:</strong> Signup before using services of startSSL like generating SSL certificate.</p>
+  </li>
+  <li><strong><a href="/2015/05/part-12-get-ssl-certificate-free/">Part 1/2 - Get SSL certificate (free)</a>:</strong> I want a totally, 100% free cert so I’m going to use <a href="https://www.startssl.com">StartSSL</a>.</li>
+  <li><strong><a href="/2015/05/part-22-configure-nginx-web-server/">Part 2/2 - Configure SSL on nginx web server</a>:</strong> to use SSL certificate &amp; enable HTTPS along with some other security stuff.</li>
+</ul>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>

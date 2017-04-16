@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>blog.ashishapy.com</title>
+   
+   <link>https://blog.ashishapy.com/</link>
+   <description>Amused at technology</description>
+   <language>en-uk</language>
+   <managingEditor> Ashish Pandey</managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>AWS https CloudFront with Free Custom SSL</title>
+	  <link>//2015/06/https-aws-cloudfront-with-free-custom-ssl/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-06-13T08:48:15+00:00</pubDate>
+	  <guid>//2015/06/https-aws-cloudfront-with-free-custom-ssl/</guid>
+	  <description><![CDATA[
+	     <p>I wanted to deliver images on my website through a secure CDN (in case of AWS, it is CloudFront) to improve performance of my website.</p>
+
+<hr />
+<p><strong>Synopsis:</strong> 
+It’s covered in 4 steps.</p>
+
+<ol>
+  <li>Get class 1 free SSL from StartSSL</li>
+  <li>Upload certificate to aws for CloudFront</li>
+  <li>Configure Secure CloudFront to deliver images stored on AWS S3 bucket.</li>
+  <li>Setup Route 53 to use cdn subdomain with CloudFront</li>
+</ol>
+
+<hr />
+<p>But since I have enabled HTTP Strict Transport Security (HSTS) for all my website subdomains.</p>
+
+<p>==add_header Strict-Transport-Security “max-age=31536000; includeSubdomains;”;==</p>
+
+<p>It allows web servers to declare that web browsers (or other complying user agents) should only interact with it using secure HTTPS connections, and never via the insecure HTTP protocol.
+After enabling HTTPS my domain is not allowed to serve images over http.</p>
+
+<p><strong>Step 1</strong>: 
+Let’s get a free SSL first.
+I got SSL for my domain https://ashishapy.com and one sub domain https://www.ashishapy.com for free. Check my other blog <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">get-ssl-certificate-free</a> to know, how to get it. 
+Now I want another subdomain https://cdn.ashishapy.com to be served using SSL. Free SSL allows to add only one subdomain along with root domain.</p>
+
+<p>I had two options
+A. Go for costly and exhaustive process to get class 2 SSL to add more than one subdomain.
+B. Or Get another Class 1 SSL Free for subdomain cdn.ashishapy.com.</p>
+
+<p>Being an individual blogger, I wanted to go for cheapest option without compromising security. I choose option 2, get it using same process explained <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">get-ssl-certificate-free</a>. 
+I have three files Private Key (cdn_ssl_private.key), Certificate (cdn_ssl.crt) and intermediate CA certificate (sub.class1.server.ca.pem)</p>
+
+<p><strong>Step 2</strong>: 
+Upload these files to AWS. You are gonna need AWS command line tool. If you haven’t already installed it then follow <a href="http://docs.aws.amazon.com/cli/latest/userguide/installing.html">AWS cli installtion guide</a>.
+you need to associate your Amazon Access key and ID by running 
+<code>aws configure</code></p>
+
+<p>Once AWS cli tool configured, upload the certificate to AWS using following command.</p>
+
+<p><code>aws iam upload-server-certificate --server-certificate-name cdnashishpy --certificate-body file://cdn-ssl.crt --private-key file://cdn_ssl_private.key --certificate-chain file://sub.class1.server.ca.pem --path /cloudfront/</code></p>
+
+<p>I named certificate name as ‘cdnashishapy’, please use your own name to recognise easily in future.
+The extra –-path /cloudfront/ to let Amazon know we will be using this on CloudFront otherwise certificate won’t show for CloudFront.</p>
+
+<p>Test it, if all is well by running command 
+<code>aws iam get-server-certificate --server-certificate-name cdnashishapy</code>
+It should return uploaded certificate information.</p>
+
+<p><strong>Step 3</strong>:
+Sign in to your AWS account and go to <a href="https://console.aws.amazon.com/cloudfront/home">CloudFront home</a>.
+<img src="//cdn.ashishapy.com/2015/Jun/1cf-1434176197004.jpg" alt="CloudFront home" />
+Click on ‘Create Distribution’.</p>
+
+<p><img src="//cdn.ashishapy.com/2015/Jun/2cf-1434176975683.jpg" alt="Select Web" />
+In ‘Web’ section click on ‘Get Started’ button</p>
+
+<p>In the next screen fill ‘Origin Settings’ &amp; ‘Default Cache Behaviour Settings’ as below screen shot.</p>
+
+<p>Origin Settings:
+<img src="//cdn.ashishapy.com/2015/Jun/3cf-1434177785313.jpg" alt="Origin Settings" />
+I choose a S3 bucket as origin. This should be your source of content.</p>
+
+<p>Default Cache Behaviour Settings:
+<img src="//cdn.ashishapy.com/2015/Jun/4cf-1434178088818.jpg" alt="Default Cache Behaviour Settings" /></p>
+
+<p>Distribution Settings:
+Here comes the critical part of the setup.
+<img src="//cdn.ashishapy.com/2015/Jun/5cf-1434178922019.jpg" alt="Distribution Settings" /></p>
+
+<p>Price Class: Choose it based on your most users’ geolocation.
+Alternate Domain Names (CNAMEs): Give your cdn subdomain name.
+SSL Certificate: Select Custom SSL Certificate and choose certificate name from drop down option.</p>
+
+<p>==Custom SSL Client Support: I choose ‘Only Clients that Support Server Name Indication (SNI)’. This option limits the browsers you can serve. Check what browser supports SNI.
+Mostly, it’s not supported in IE at all on Windows XP and earlier and Android 2.2 default browser. Still recommended to do your own analysis.==
+You can choose ‘All Clients’ but there are charges for that.</p>
+
+<p>Click on ‘Create Distribution’ button to create Secure CloudFront Distribution.
+<img src="//cdn.ashishapy.com/2015/Jun/6CF-1434181909661.jpg" alt="CloudFront Distribution" />
+This will take 15-20 mins to get status as ‘Enabled’.
+Copy ‘Domain Name’ value, you will need it to set up DNS in next step.</p>
+
+<p>You are just one step away from setting up you secure CDN.</p>
+
+<p><strong>Step 4</strong>:
+Go to your <a href="https://console.aws.amazon.com/route53/home#hosted-zones:">AWS Route53 Hosted Zones</a>.
+Create a Record Set.
+<img src="//cdn.ashishapy.com/2015/Jun/6cfr53-1434183046874.jpg" alt="Create a Record Set" />
+Paste CloudFront DomainName copied from Step 3 in Value.
+Save the record set and wait for couple of mins.</p>
+
+<p>Congratulations! You have successfully created a secure CDN.</p>
+
+<p>Please leave your comments here or discuss on Twitter.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>Create AWS Https / SSL Load Balancer</title>
+	  <link>//2015/05/create-aws-https-ssl-load-balancer/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2015-05-24T03:31:00+00:00</pubDate>
+	  <guid>//2015/05/create-aws-https-ssl-load-balancer/</guid>
+	  <description><![CDATA[
+	     <p>I got class 1 SSL certificate free from <a href="https://www.startssl.com/">StartSSL</a> for my domain. 
+If you are interested to know more about this, follow my posts here <a href="http://bit.ly/1L6XePf">Get SSL Certificate (Free) &amp; Enable https on nginx</a></p>
+
+<p>I have hosted my domain on AWS EC2 instance and I want to build it around scalable &amp; reliable architecture. Using load balancer with auto scaling group is the way to go.</p>
+
+<p>I took below steps to achieve this.
+A. Create HTTPS / SSL Load Balancer (Talk of the post)
+B. Create Auto scaling group using above load balancer
+C. Configure Route 53 to use load balancer instead of Elastic IP.</p>
+
+<p>Let’s build AWS HTTPS / SSL EC2 load balancer.</p>
+
+<p><strong>Synopsis:</strong>
+Topics covered are, roughly.
+A. Define Load Balancer Protocol
+B. Assign Security Group
+C. Assign SSL Certificate
+D. Add EC2 Instance</p>
+
+<p>You should have aws account, basic understanding of aws and one or more running EC2 instances before creating load balancer.</p>
+
+<p><strong>Step 1:</strong>
+Login with your aws credentials to go to <a href="https://ap-southeast-1.console.aws.amazon.com/ec2/v2/home">aws ec2 management console</a>.
+Check the region you are in and it is as expected.
+Click on ‘Load Balancers’ under ‘Network &amp; Security’ section.
+<img src="//cdn.ashishapy.com/2015/May/1elb-1432444010267.jpg" alt="'Load Balancers' under 'Network &amp; Security'" />
+Click ‘Create Load Balancer’ on right side of screen.
+<img src="//cdn.ashishapy.com/2015/May/2elb-1432444285176.jpg" alt="Click 'Create Load Balancer'" /></p>
+
+<p><strong>Step 2:</strong>
+Define basic configuration of load balancer.
+Add https listener configuration, https protocol for both load balancer &amp; instance.
+<img src="//cdn.ashishapy.com/2015/May/3elb-1432444641729.jpg" alt="basic configuration of load balancer" />
+Click on ‘Next: Assign Security Group’</p>
+
+<p><strong>Step 3:</strong>
+Add security group. Either choose existing security group or create a new one. Allow all http &amp; https traffic to your load balancer.
+<img src="//cdn.ashishapy.com/2015/May/4elb-1432446047203.jpg" alt="Add security group" />
+Click on ‘Next: Configure Security Settings’.</p>
+
+<p><strong>Step 4:</strong>
+Here it gets bit tricky. Provide your SSL certificate details.
+<img src="//cdn.ashishapy.com/2015/May/5elb-1432446553171.jpg" alt="SSL certificate details" />
+==I had class 1 private key &amp; SSL certificate from StartSSL which was pem encoded. In case you want to know, how to get these, please check my post here <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">Part 1/2 - Get SSL certificate (free)</a>==</p>
+
+<p><strong>Private Key:</strong> 
+Copy &amp; paste content of private key (ssl.key) in this box.
+<strong>Public Key Certificate:</strong> 
+Copy &amp; paste content of your domain certificate (ssl.crt) here.
+<strong>Certificate Chain:</strong>
+Copy and paste content of your certificate of intermediate CA (sub.class1.server.ca.pem). Do not use certificate of Root CA. It won’t work here.</p>
+
+<p>Remove any extra space at the end of key / certificate.</p>
+
+<p><strong>Step 5:</strong>
+Complete rest of the steps as per instruction on UI.</p>
+
+<p><em>Configure Health Check:</em> 
+ Keep default values there or you can choose to make changes as per own preferences. Click on ‘Next: Add EC2 Instances’.</p>
+
+<p><em>Add EC2 Instances:</em>
+Select EC2 instances, you wanna add to the load balancer. Click on ‘Next: Add Tag’</p>
+
+<p><em>Add Tags:</em>
+Create tag here or leave it blank as I did. Click ‘Review &amp; Create’</p>
+
+<p><em>Review:</em>
+Review the details you entered before in this screen. If all are good then click on ‘Create’ button.</p>
+
+<p>The next screen will show you the status of load balancer. If all went well then it will create load balancer. In case you get any error related to private key or certificate then you have go through whole process again to create load balancer. This time carefully enter private key &amp; certificate.</p>
+
+<p>Well Done! You got a load balancer for your EC2 instances which is https enabled.</p>
+
+<p>Please leave comments / reviews or share on twitter.</p>
+
+	  ]]></description>
+	</item>
+
+
+</channel>
+</rss>
