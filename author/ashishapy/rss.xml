@@ -12,6 +12,337 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>Container (Docker) Management Framework - An Introduction</title>
+	  <link>//2017/07/container-management-framework/</link>
+	  <author>Ashish Pandey</author>
+	  <pubDate>2017-07-02T06:00:00+00:00</pubDate>
+	  <guid>//2017/07/container-management-framework/</guid>
+	  <description><![CDATA[
+	     <p>In case you haven’t noticed, we are on rapid march towards realising full capacity of cloud infrastructure &amp; it’s services. Having multi cloud, hybrid infrastructure &amp; avoid vendor locking is the dream!</p>
+
+<p>Building &amp; running your apps in container on cloud is major step towards the dream. Few months back I wrote, presented &amp; talked on <a href="//blog.ashishapy.com/2016/03/docker-with-devops/">Docker with DevOps - One step towards Microservices</a>, <a href="//blog.ashishapy.com/2016/04/docker-ecosystem-for-microservice-cluster/">Docker Ecosystem for Microservices</a> &amp; <a href="//blog.ashishapy.com/2016/09/self-healing-system-using-docker/">Self-Healing Systems using Docker</a>.</p>
+
+<p><em>Containers (aka Docker)</em> comes with some benefits &amp; complexities. Your apps in container without <em>container management framework</em>, are like your luxury car without wheels &amp; steering.</p>
+
+<p>This post is series of questions &amp; answers, I ask myself &amp; answer myself. 
+Weirdo!</p>
+
+<p>Let’s start . . .</p>
+
+<h3 id="what-is-container-management-framework">What is Container Management Framework?</h3>
+
+<p>A container management framework is a solution used to build, ship &amp; deploy your app in containers. Docker, as a container has become a standard.</p>
+
+<p>Container Management Framework helps you to build <strong><em>CaaS (Container as a Service)</em></strong> solution.</p>
+
+<blockquote>
+  <p><strong>Containers as a Service (CaaS)</strong> is a model where IT organisations and developers can work together to build, ship and run their applications anywhere. CaaS enables an IT secured and managed application environment consisting of content and infrastructure, from which developers are able build and deploy applications in a self service manner.
+- <a href="https://blog.docker.com/2016/02/containers-as-a-service-caas/">Docker</a></p>
+</blockquote>
+
+<h3 id="are-they-different-from-container-orchestrator-tool">Are they different from Container Orchestrator tool?</h3>
+
+<p>Yes…
+Orchestration is just a piece of the puzzle, but choice of the orchestration layer often drives the ‘Container Management Framework’ selection decision.</p>
+
+<p>Some popular container orchestration tools are as following.</p>
+
+<ol>
+  <li><a href="https://docs.docker.com/engine/swarm/">Docker Swarm</a></li>
+  <li><a href="https://kubernetes.io/">Kubernetes</a></li>
+  <li><a href="http://mesos.apache.org/">Apache Mesos</a></li>
+</ol>
+
+<p>Don’t be blinded by orchestration capabilities. Focus on governance, security and policy enforcement; this will be the most important factor for production workloads.</p>
+
+<blockquote>
+  <p>Orchestration tools are very much IT operation (ITOps) focused &amp; don’t solve full life-cycle of application (Dev).</p>
+</blockquote>
+
+<p>Container Management Framework goes beyond the orchestration &amp; will not only integrate the various management elements to form a whole, but also ensure that the management elements are compatible with each other.</p>
+
+<h3 id="good-can-you-name-some-of-container-management-framework">Good! Can you name some of Container Management Framework?</h3>
+
+<p>Sure, followings are some popular container management frameworks.</p>
+
+<ul>
+  <li><a href="https://www.docker.com/enterprise-edition">Docker Enterprise</a></li>
+  <li><a href="https://www.openshift.com/">RedHat OpenShift</a></li>
+  <li><a href="https://mesosphere.com/product/">Mesosphere Enterprise DC/OS</a></li>
+  <li><a href="https://coreos.com/tectonic/">CoreOS Tectonic</a></li>
+  <li><a href="http://rancher.com/">Rancher</a></li>
+  <li><a href="https://www.apcera.com/">Apcera</a></li>
+  <li><a href="https://apprenda.com/">Apprenda</a></li>
+</ul>
+
+<p>From popular cloud providers:</p>
+
+<ul>
+  <li><a href="https://aws.amazon.com/ecs/">Amazon ECS</a></li>
+  <li><a href="https://cloud.google.com/container-engine/">Google GKE</a></li>
+  <li><a href="https://azure.microsoft.com/en-in/services/container-service/">Microsoft ACS</a></li>
+</ul>
+
+<h3 id="ok-what-does-container-management-framework-bring-on-table">Ok, what does container management framework bring on table?</h3>
+
+<p><strong>1) Scheduling of containers:</strong></p>
+
+<p><code class="highlighter-rouge">Placement, replication, scaling, rescheduling, upgrades, rollback of containers.</code></p>
+
+<p><strong>2) Computing resource management:</strong></p>
+
+<p><code class="highlighter-rouge">Memory, cpu, volume, port, ip, image, network of containers.</code></p>
+
+<p><strong>3) Management of services:</strong></p>
+
+<p><code class="highlighter-rouge">Service discovery &amp; orchestrating multiple containers together (using label, group, namespace, load balancing, readiness checking, health checking).</code></p>
+
+<p><strong>4) Governance:</strong></p>
+
+<p><code class="highlighter-rouge">Access control, isolation, resource utilisation, limits &amp; quotas, network segmentation &amp; encryption.</code></p>
+
+<p>All above capabilities are usually solved by <strong>orchestration tools</strong>. There are more container management framework, can do for us.</p>
+
+<h3 id="okey-what-else-can-container-management-framework-do-for-us">Okey! what else can container management framework do for us?</h3>
+
+<p>They should provide seamless integration with -</p>
+
+<p><strong>5) Image registry:</strong></p>
+
+<p><code class="highlighter-rouge">A place where you can store &amp; distribute container (Docker) images.</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://docs.docker.com/datacenter/dtr/2.2/guides/">Docker Trusted Registry</a></li>
+  <li><a href="https://quay.io/">Quay</a></li>
+  <li><a href="https://www.jfrog.com/article/docker-registry/">Artifactory</a></li>
+  <li>
+    <p><a href="https://www.sonatype.com/docker">Nexus</a></p>
+  </li>
+  <li><a href="https://hub.docker.com/">Docker Hub</a></li>
+  <li><a href="https://aws.amazon.com/ecr/">AWS ECR</a></li>
+  <li><a href="https://cloud.google.com/container-registry/">Google Container Registry</a></li>
+  <li><a href="https://azure.microsoft.com/en-in/services/container-registry/">Azure Container Registry</a></li>
+</ul>
+
+<p><strong>6) Source Control Management:</strong></p>
+
+<p><code class="highlighter-rouge">A version control system, where your code, configs &amp; documents are being stored.</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://enterprise.github.com/home">Github</a></li>
+  <li><a href="https://bitbucket.org/product">Bitbucket</a></li>
+  <li><a href="https://about.gitlab.com/products/">GitLab</a></li>
+  <li><a href="https://www.collab.net/downloads/subversion">SVN</a></li>
+</ul>
+
+<p><strong>7) Persistant Storage:</strong></p>
+
+<p><code class="highlighter-rouge">Place to store all your app data. A software-defined storage (SDS)</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li>
+    <p>Object Storage</p>
+
+    <ul>
+      <li><a href="https://aws.amazon.com/s3/">AWS S3</a></li>
+      <li><a href="https://docs.openstack.org/developer/swift/">Openstack Swift</a></li>
+      <li><a href="https://cloud.google.com/storage/">Google Unified Object Storage</a></li>
+    </ul>
+  </li>
+  <li>
+    <p>Block Storage</p>
+
+    <ul>
+      <li><a href="https://aws.amazon.com/ebs/">AWS EBS</a></li>
+      <li><a href="https://docs.openstack.org/kilo/config-reference/content/section_block-storage-overview.html">Openstack Cinder</a></li>
+      <li><a href="https://cloud.google.com/compute/docs/disks/">GCE Persistent Disk</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p>Data is mission critical &amp; storage technologies in container world, to support stateful services, are yet to be matured.</p>
+
+<p>You may want to continue with your traditional storage solution until world settles for stateful containers.</p>
+
+<p><strong>8) Security solutions:</strong></p>
+
+<p><code class="highlighter-rouge">Enforce security policies, manage secrets, security scanning, image signing.</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://docs.docker.com/engine/security/trust/content_trust/">Docker Content Trust</a></li>
+  <li><a href="https://www.aquasec.com/">Aqua</a></li>
+  <li><a href="https://www.twistlock.com/">Twistlock</a></li>
+  <li>
+    <p><a href="https://www.weave.works/">Weaveworks</a></p>
+  </li>
+  <li>
+    <p><a href="https://www.jfrog.com/confluence/display/XRAY">JFrog Xray</a></p>
+  </li>
+  <li><a href="https://www.vaultproject.io/">Vault</a></li>
+</ul>
+
+<p><strong>9) Load balancer:</strong></p>
+
+<p><code class="highlighter-rouge">To manage &amp; distribute your external traffic.</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://www.nginx.com/resources/admin-guide/load-balancer/">Ngnix</a></li>
+  <li><a href="http://www.haproxy.org/">HAProxy</a></li>
+  <li><a href="https://avinetworks.com/">AVI Networks</a></li>
+  <li><a href="https://www.incapsula.com/load-balancer.html">Incapsula</a></li>
+  <li><a href="https://www.citrix.com/products/netscaler-adc/">Citrix Netscaler</a></li>
+  <li>
+    <p><a href="http://dyn.com/">Dyn</a></p>
+  </li>
+  <li><a href="https://aws.amazon.com/elasticloadbalancing/">AWS ELB</a></li>
+</ul>
+
+<p><strong>10) Monitoring:</strong></p>
+
+<p><code class="highlighter-rouge">Log management, Metrics collection, time-series monitoring, analytics &amp; visualisation &amp; alerting</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://www.splunk.com/">Splunk</a></li>
+  <li><a href="https://www.elastic.co/products">Elastic Stack</a></li>
+  <li><a href="https://www.sysdig.org/">Sysdig</a></li>
+  <li><a href="https://prometheus.io/">Prometheus</a></li>
+  <li>Others (<a href="https://github.com/google/cadvisor">cAdvisor</a>, <a href="http://www.fluentd.org/">Fluentd</a>, <a href="https://github.com/kubernetes/heapster">Heapster</a>, <a href="https://grafana.com/">Grafana</a> etc.)</li>
+</ul>
+
+<p><strong>11) Authentication &amp; authorisation:</strong></p>
+
+<p><code class="highlighter-rouge">Policy compliance, role based access control (RBAC), app to app communication</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://www.ldap.com/choosing-an-ldap-server">Lightweight Directory Access Protocol (LDAP)</a></li>
+  <li><a href="">Service Accounts</a></li>
+  <li><a href="https://docs.microsoft.com/en-us/azure/active-directory/">MS Azure Active Directory</a></li>
+  <li><a href="https://aws.amazon.com/iam/">AWS IAM</a></li>
+</ul>
+
+<p><strong>12) Continuous Integration:</strong></p>
+
+<p><code class="highlighter-rouge">Developers to integrate code into a shared repository &amp; verified by an automated build, allowing teams to detect problems early</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://jenkins.io/">Jenkins</a></li>
+  <li><a href="https://www.atlassian.com/software/bamboo">Bamboo</a></li>
+  <li><a href="https://circleci.com/">CircleCI</a></li>
+  <li><a href="https://travis-ci.org/">Travis CI</a></li>
+  <li><a href="http://cruisecontrol.sourceforge.net/">CruiseControl</a></li>
+  <li><a href="http://www.jetbrains.com/teamcity/">TeamCity</a></li>
+</ul>
+
+<p><strong>13) Continuous Delivery:</strong></p>
+
+<p><code class="highlighter-rouge">Release into production of application that passes the automated tests, after necessary approvals</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://www.chef.io/chef/">Chef</a> / <a href="https://puppet.com/">Puppet</a> / <a href="https://www.ansible.com/">Ansible</a></li>
+  <li><a href="https://www.terraform.io/">Terraform</a> &amp; <a href="https://www.packer.io/">Packer</a></li>
+  <li><a href="https://cfengine.com/">CFEngine</a></li>
+  <li><a href="https://saltstack.com/">SaltStack</a></li>
+  <li><a href="https://developer.ibm.com/urbancode/products/urbancode-deploy/">IBM UrbanCode Deploy</a></li>
+</ul>
+
+<p><strong>14) Collaboration:</strong></p>
+
+<p><code class="highlighter-rouge">Brings all the pieces (system alerts, notification etc.) and people/teams you need together. Enables ChatOps.</code></p>
+
+<p>Tools:</p>
+
+<ul>
+  <li><a href="https://slack.com/">Slack</a></li>
+  <li><a href="https://www.hipchat.com/">HipChat</a></li>
+  <li><a href="https://products.office.com/en-in/yammer/yammer-overview">Yammer</a></li>
+  <li><a href="https://gitter.im/">Gitter</a></li>
+</ul>
+
+<h3 id="hummm-anything-else-they-should-be-integrated-with">Hummm… anything else they should be integrated with…</h3>
+
+<p>Probably also with -</p>
+
+<p><strong>15) Cloud provider services</strong></p>
+
+<p><strong>16) Billing system</strong></p>
+
+<p><strong>17) Auditing system</strong></p>
+
+<p>Phew! That’s exhaustive list!</p>
+
+<h3 id="anything-container-management-framework-cant-do-or-will-not-do">Anything container management framework can’t do or will not do?</h3>
+
+<p>Yes …</p>
+
+<ul>
+  <li>
+    <p><strong>Infrastructure Management:</strong></p>
+
+    <p><code class="highlighter-rouge">Infrastructure (computing, network &amp; storage) provisioning, scaling up / down, upgrading / rollback / security fixes.</code></p>
+  </li>
+  <li>
+    <p><strong>Manage itself</strong> (Container Management Framework):</p>
+
+    <p><code class="highlighter-rouge">Install / bootstrap, upgrade / rollback / security fixes, disaster recovery of container management framework itself.</code></p>
+  </li>
+</ul>
+
+<h3 id="whaaat--then-how-am-i-gonna-get-those-things-done">WHAAAT !!? Then… how am I gonna get those things done?</h3>
+
+<p>That is out of scope of container management. You should have cloud infrastructure.</p>
+
+<p>Use infrastructure provisioning tool to provision your infrastructure &amp; use some configuration management tool to setup your container management framework.</p>
+
+<p>Don’t forget to have disaster recovery plan in place.</p>
+
+<h3 id="can-you-give-your-recommendations-on-container-management-frameworks">Can you give your recommendations on container management frameworks?</h3>
+
+<p>Recommendations!? No! I can’t &amp; I should not. one size doesn’t fit all.</p>
+
+<p>But I can suggest you how to reach on your decision to choose one.</p>
+
+<ul>
+  <li>
+    <p>First choose a cloud provider (public / private).</p>
+  </li>
+  <li>
+    <p>Decide on what cloud services you are gonna use to build infrastructure (VMs / bare metal).</p>
+  </li>
+  <li>
+    <p>Make a checklist (based on your need) as listed above in this post &amp; see which Container Management Framework best suited to you.</p>
+  </li>
+  <li>
+    <p>Choose tools which will help you to create infrastructure, deploy container management framework &amp; upgrade / patch it.</p>
+  </li>
+  <li>
+    <p>Don’t forget to adopt DevOps tools &amp; principles for your apps. Check <a href="//blog.ashishapy.com/2015/06/devops-an-introduction-with-automation-tools/">DevOps - An Introduction</a>.</p>
+  </li>
+</ul>
+
+<p>I would love to listen your feedback.</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>Self-Healing Systems using Docker</title>
 	  <link>//2016/09/self-healing-system-using-docker/</link>
 	  <author>Ashish Pandey</author>
@@ -773,91 +1104,6 @@ Save the record set and wait for couple of mins.</p>
 <p>Congratulations! You have successfully created a secure CDN.</p>
 
 <p>Please leave your comments here or discuss on Twitter.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>Create AWS Https / SSL Load Balancer</title>
-	  <link>//2015/05/create-aws-https-ssl-load-balancer/</link>
-	  <author>Ashish Pandey</author>
-	  <pubDate>2015-05-24T03:31:00+00:00</pubDate>
-	  <guid>//2015/05/create-aws-https-ssl-load-balancer/</guid>
-	  <description><![CDATA[
-	     <p>I got class 1 SSL certificate free from <a href="https://www.startssl.com/">StartSSL</a> for my domain. 
-If you are interested to know more about this, follow my posts here <a href="http://bit.ly/1L6XePf">Get SSL Certificate (Free) &amp; Enable https on nginx</a></p>
-
-<p>I have hosted my domain on AWS EC2 instance and I want to build it around scalable &amp; reliable architecture. Using load balancer with auto scaling group is the way to go.</p>
-
-<p>I took below steps to achieve this.
-A. Create HTTPS / SSL Load Balancer (Talk of the post)
-B. Create Auto scaling group using above load balancer
-C. Configure Route 53 to use load balancer instead of Elastic IP.</p>
-
-<p>Let’s build AWS HTTPS / SSL EC2 load balancer.</p>
-
-<p><strong>Synopsis:</strong>
-Topics covered are, roughly.
-A. Define Load Balancer Protocol
-B. Assign Security Group
-C. Assign SSL Certificate
-D. Add EC2 Instance</p>
-
-<p>You should have aws account, basic understanding of aws and one or more running EC2 instances before creating load balancer.</p>
-
-<p><strong>Step 1:</strong>
-Login with your aws credentials to go to <a href="https://ap-southeast-1.console.aws.amazon.com/ec2/v2/home">aws ec2 management console</a>.
-Check the region you are in and it is as expected.
-Click on ‘Load Balancers’ under ‘Network &amp; Security’ section.
-<img src="//cdn.ashishapy.com/2015/May/1elb-1432444010267.jpg" alt="'Load Balancers' under 'Network &amp; Security'" />
-Click ‘Create Load Balancer’ on right side of screen.
-<img src="//cdn.ashishapy.com/2015/May/2elb-1432444285176.jpg" alt="Click 'Create Load Balancer'" /></p>
-
-<p><strong>Step 2:</strong>
-Define basic configuration of load balancer.
-Add https listener configuration, https protocol for both load balancer &amp; instance.
-<img src="//cdn.ashishapy.com/2015/May/3elb-1432444641729.jpg" alt="basic configuration of load balancer" />
-Click on ‘Next: Assign Security Group’</p>
-
-<p><strong>Step 3:</strong>
-Add security group. Either choose existing security group or create a new one. Allow all http &amp; https traffic to your load balancer.
-<img src="//cdn.ashishapy.com/2015/May/4elb-1432446047203.jpg" alt="Add security group" />
-Click on ‘Next: Configure Security Settings’.</p>
-
-<p><strong>Step 4:</strong>
-Here it gets bit tricky. Provide your SSL certificate details.
-<img src="//cdn.ashishapy.com/2015/May/5elb-1432446553171.jpg" alt="SSL certificate details" />
-==I had class 1 private key &amp; SSL certificate from StartSSL which was pem encoded. In case you want to know, how to get these, please check my post here <a href="https://blog.ashishapy.com/part-12-get-ssl-certificate-free/">Part 1/2 - Get SSL certificate (free)</a>==</p>
-
-<p><strong>Private Key:</strong> 
-Copy &amp; paste content of private key (ssl.key) in this box.
-<strong>Public Key Certificate:</strong> 
-Copy &amp; paste content of your domain certificate (ssl.crt) here.
-<strong>Certificate Chain:</strong>
-Copy and paste content of your certificate of intermediate CA (sub.class1.server.ca.pem). Do not use certificate of Root CA. It won’t work here.</p>
-
-<p>Remove any extra space at the end of key / certificate.</p>
-
-<p><strong>Step 5:</strong>
-Complete rest of the steps as per instruction on UI.</p>
-
-<p><em>Configure Health Check:</em> 
- Keep default values there or you can choose to make changes as per own preferences. Click on ‘Next: Add EC2 Instances’.</p>
-
-<p><em>Add EC2 Instances:</em>
-Select EC2 instances, you wanna add to the load balancer. Click on ‘Next: Add Tag’</p>
-
-<p><em>Add Tags:</em>
-Create tag here or leave it blank as I did. Click ‘Review &amp; Create’</p>
-
-<p><em>Review:</em>
-Review the details you entered before in this screen. If all are good then click on ‘Create’ button.</p>
-
-<p>The next screen will show you the status of load balancer. If all went well then it will create load balancer. In case you get any error related to private key or certificate then you have go through whole process again to create load balancer. This time carefully enter private key &amp; certificate.</p>
-
-<p>Well Done! You got a load balancer for your EC2 instances which is https enabled.</p>
-
-<p>Please leave comments / reviews or share on twitter.</p>
 
 	  ]]></description>
 	</item>

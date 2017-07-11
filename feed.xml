@@ -8,6 +8,21 @@
     
       
       <item>
+        <title>Container (Docker) Management Framework - An Introduction</title>
+        
+          <description>&lt;p&gt;In case you haven’t noticed, we are on rapid march towards realising full capacity of cloud infrastructure &amp;amp; it’s services. Having multi cloud, hybrid infrastructure &amp;amp; avoid vendor locking is the dream!&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sun, 02 Jul 2017 06:00:00 +0000</pubDate>
+        <link>
+        https://blog.ashishapy.com//2017/07/container-management-framework/</link>
+        <guid isPermaLink="true">https://blog.ashishapy.com//2017/07/container-management-framework/</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>Self-Healing Systems using Docker</title>
         
           <description>&lt;p&gt;Imagine world where IT / Software systems do not require manual intervention to manage itself. Systems are self-sufficient. In case of disaster, systems are able to recover itself &amp;amp; resume services. Systems are able to detect what is not working, then &lt;em&gt;self-heal / auto-heal / restore&lt;/em&gt; itself to &lt;strong&gt;designed state&lt;/strong&gt;.&lt;/p&gt;
