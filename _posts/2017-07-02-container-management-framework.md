@@ -11,9 +11,9 @@ navigation: True
 logo: 'assets/images/logofh.png'
 ---
 
-In case you haven't noticed, we are on rapid march towards realising full capacity of cloud infrastructure & it's services. Having multi cloud, hybrid infrastructure & avoid vendor locking is the dream! 
+In case you haven't noticed, we are on rapid march towards realising full capacity of cloud infrastructure & its services. Having multi cloud, hybrid infrastructure & avoid vendor locking is the dream! 
 
-Building & running your apps in container on cloud is major step towards the dream. Few months back I wrote, presented & talked on [Docker with DevOps - One step towards Microservices](//blog.ashishapy.com/2016/03/docker-with-devops/), [Docker Ecosystem for Microservices](//blog.ashishapy.com/2016/04/docker-ecosystem-for-microservice-cluster/) & [Self-Healing Systems using Docker](//blog.ashishapy.com/2016/09/self-healing-system-using-docker/).
+Building & running your apps in container on cloud is major step towards the dream. Few months back I wrote, presented & talked on [Docker with DevOps - One step towards Microservices](//blog.ashishapy.com/2016/03/docker-with-devops/), [Docker Ecosystem for Microservices](//blog.ashishapy.com/2016/04/docker-ecosystem-for-microservice-cluster/) & [Self-Healing Systems using Docker](//blog.ashishapy.com/2016/09/self-healing-system-using-docker/). These blog posts/presentations help you in understanding basics & benefits of cloud, Docker, DevOps.
 
 *Containers (aka Docker)* comes with some benefits & complexities. Your apps in container without *container management framework*, are like your luxury car without wheels & steering.
 
