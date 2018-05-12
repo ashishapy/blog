@@ -37,8 +37,7 @@ permalink: /:year/:month/:title/
 
 
 # gems and other configs
-gems: [jekyll-paginate]
-exclude: [vendor]
+plugins: [jekyll-paginate]
 
 # Additional settings available on the front-matter
 # Site logo in the index.html (as in demo.ghost.io)
@@ -78,3 +77,5 @@ exclude:
   - "*.Rmd"
   - vendor
   - .travis.yml
+  - node_modules
+  - .git
