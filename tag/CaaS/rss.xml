@@ -36,8 +36,10 @@ Weirdo!</p>
 <p>Container Management Framework helps you to build <strong><em>CaaS (Container as a Service)</em></strong> solution.</p>
 
 <blockquote>
-  <p><strong>Containers as a Service (CaaS)</strong> is a model where IT organisations and developers can work together to build, ship and run their applications anywhere. CaaS enables an IT secured and managed application environment consisting of content and infrastructure, from which developers are able build and deploy applications in a self service manner.
-- <a href="https://blog.docker.com/2016/02/containers-as-a-service-caas/">Docker</a></p>
+  <p><strong>Containers as a Service (CaaS)</strong> is a model where IT organisations and developers can work together to build, ship and run their applications anywhere. CaaS enables an IT secured and managed application environment consisting of content and infrastructure, from which developers are able build and deploy applications in a self service manner.</p>
+  <ul>
+    <li><a href="https://blog.docker.com/2016/02/containers-as-a-service-caas/">Docker</a></li>
+  </ul>
 </blockquote>
 
 <h3 id="are-they-different-from-container-orchestrator-tool">Are they different from Container Orchestrator tool?</h3>
